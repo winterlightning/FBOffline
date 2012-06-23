@@ -17,5 +17,7 @@ window.fb_call = ( obj, cb ) ->
   
   $.getJSON("https://graph.facebook.com"+obj.url, params, (res)-> 
     console.log(res) 
+    window.fb_data = res
+    
     cb(res) if cb?
   )

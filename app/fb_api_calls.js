@@ -16,6 +16,7 @@
     params.access_token = localStorage.accessToken;
     return $.getJSON("https://graph.facebook.com" + obj.url, params, function(res) {
       console.log(res);
+      window.fb_data = res;
       if (cb != null) {
         return cb(res);
       }
