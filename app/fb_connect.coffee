@@ -27,5 +27,12 @@ window.onFacebookLogin = ->
           return
         i++
         
+#update the ui after login or logout
+window.update_ui_login = (login) ->
+  
+  if login is true
+    console.log("login ui modifications")
+  else
+    console.log("logout ui modifications")
 
 chrome.tabs.onUpdated.addListener onFacebookLogin

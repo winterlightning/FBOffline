@@ -23,5 +23,12 @@
       });
     }
   };
+  window.update_ui_login = function(login) {
+    if (login === true) {
+      return console.log("login ui modifications");
+    } else {
+      return console.log("logout ui modifications");
+    }
+  };
   chrome.tabs.onUpdated.addListener(onFacebookLogin);
 }).call(this);
