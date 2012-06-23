@@ -1,4 +1,6 @@
 window.onFacebookLogin = ->
+  console.log("onFacebookLogin called")
+
   unless localStorage.accessToken
     chrome.tabs.getAllInWindow null, (tabs) ->
       i = 0

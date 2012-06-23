@@ -1,5 +1,6 @@
 (function() {
   window.onFacebookLogin = function() {
+    console.log("onFacebookLogin called");
     if (!localStorage.accessToken) {
       return chrome.tabs.getAllInWindow(null, function(tabs) {
         var i, params, _results;
