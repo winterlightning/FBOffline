@@ -1,0 +1,14 @@
+{
+  "name": "FB Deck",
+  "version": "1.0",
+  "description": "This app allows people to access facebook offline",
+  "app": {
+    "launch": {
+      "local_path": "main.html"
+    }
+  },  	
+  "permissions": [
+    "tabs",
+    "*.facebook.com/*"
+  ]
+}
