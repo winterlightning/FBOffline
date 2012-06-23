@@ -34,8 +34,15 @@
     
     <!-- non twitter css -->
     <link href="css/main.css" rel="stylesheet">
+    
+    <!-- fb shit -->
     <script src="app/fb_connect.js"></script>
     <script src="app/fb_api_calls.js"></script>
+    
+    <!-- spine shit -->
+    <script src="spine/spine.js"></script>
+    <script src="spine/local.js"></script>
+    
   </head>
 
   <body style="background-color: #444">
@@ -55,7 +62,7 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="https://www.facebook.com/dialog/oauth?client_id=318226391597707&response_type=token&scope=email&redirect_uri=https://www.facebook.com/connect/login_success.html" target="_blank">Log In</a></li>
+              <li><a href="https://www.facebook.com/dialog/oauth?client_id=318226391597707&response_type=token&scope=email&redirect_uri=https://www.facebook.com/connect/login_success.html&scope=read_stream,publish_stream,offline_access,read_mailbox" target="_blank">Log In</a></li>
               <li class="divider"></li>
               <li><a href="#">Sign Out</a></li>
             </ul>
