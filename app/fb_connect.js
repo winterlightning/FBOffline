@@ -2,22 +2,18 @@
   window.successURL = "https://www.facebook.com/connect/login_success.html";
   window.onFacebookLogin = function() {
     console.log("onFacebookLogin called");
-    if (!false) {
-      console.log("called");
+    if (!localStorage.accessToken) {
       return chrome.tabs.getAllInWindow(null, function(tabs) {
-        var i, params, _results;
+        var i, params, x, _results;
         i = 0;
-        console.log(tabs);
-        console.log(successURL);
         _results = [];
         while (i < tabs.length) {
-          console.log(tabs[i].url);
-          console.log(tabs[i].url.indexOf(successURL));
           if (tabs[i].url.indexOf(successURL) === 0) {
             console.log("here");
             params = tabs[i].url.split("#")[1];
-            console.log(params);
-            localStorage.accessToken = params;
+            x = params.split("&")[0];
+            localStorage.accessToken = x.split("=")[1];
+            console.log(localStorage.accessToken);
             chrome.tabs.onUpdated.removeListener(onFacebookLogin);
             return;
           }
