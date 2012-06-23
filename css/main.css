@@ -62,3 +62,46 @@
 	-webkit-transition-timing-function: ease-in-out;
 	transition-timing-function: ease-in-out;
 }
+
+.feed {
+	position: relative;
+	cursor: pointer;
+	display: block;
+	min-height: 70px;
+	border-bottom: 1px solid #383838;
+	color: #DEDEDE;
+}
+
+header { display: block; }
+
+.time {
+	position: absolute;
+	right: 8px;
+	top: 9px;
+}
+
+.avatar {
+	position: absolute;
+	top: 10px;
+	left: -48px;
+	border-radius: 3px;
+}
+
+.name {
+	margin-top: 2px;
+	margin-right: 4px;
+}
+
+.feed_content {
+	position: relative;
+	margin-left: 58px;
+	line-height: 16px;
+	padding: 8px 8px 10px 10px;
+	min-height: 45px;
+	-webkit-user-select: text;
+	user-select: text;
+}
+
+.media_photo {
+	border-radius: 3px;
+}
