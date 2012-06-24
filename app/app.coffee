@@ -16,8 +16,10 @@ class feedHolder extends Spine.Controller
   addall: ->
     console.log("add all")
 
-    for i in Feed.all()
-      @el.append("<h1>APPENEDED<h1>")
+    for feed in Feed.all()
+      r = $("#feedTmpl").tmpl( feed )
+      console.log(r)
+      @el.append(r)
 
 $ ->
   new feedHolder()

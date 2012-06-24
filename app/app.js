@@ -17,13 +17,15 @@
       this.addall();
     }
     feedHolder.prototype.addall = function() {
-      var i, _i, _len, _ref, _results;
+      var feed, r, _i, _len, _ref, _results;
       console.log("add all");
       _ref = Feed.all();
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        i = _ref[_i];
-        _results.push(this.el.append("<h1>APPENEDED<h1>"));
+        feed = _ref[_i];
+        r = $("#feedTmpl").tmpl(feed);
+        console.log(r);
+        _results.push(this.el.append(r));
       }
       return _results;
     };
