@@ -89,6 +89,9 @@
   $(function() {
     var x, _i, _len, _ref;
     window.list_holder = new listHolder();
+    if (localStorage.accessToken) {
+      $("#loading").hide();
+    }
     chrome.tts.stop();
     if (FeedList.all().length === 0) {
       FeedList.create({
@@ -137,6 +140,10 @@
   window.stop_talking = function() {
     console.log("stop talking");
     return chrome.tts.stop();
+  };
+  window.logout = function() {
+    localStorage.accessToken = "";
+    return $("#loading").show();
   };
   exports = this;
   exports.feedHolder = feedHolder;

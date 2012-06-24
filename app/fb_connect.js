@@ -18,6 +18,7 @@
             window.get_stream();
             window.get_wall();
             window.get_friends();
+            $("#loading").hide();
             return;
           }
           _results.push(i++);

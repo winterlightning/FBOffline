@@ -72,7 +72,7 @@ $ ->
   window.list_holder = new listHolder()
  
   if localStorage.accessToken
-    
+    $("#loading").hide()
   
   chrome.tts.stop()
 
@@ -114,6 +114,10 @@ window.stop_talking = () ->
   console.log("stop talking")
   
   chrome.tts.stop()
+
+window.logout = () ->
+  localStorage.accessToken = ""
+  $("#loading").show()
   
 exports = this
 exports.feedHolder = feedHolder

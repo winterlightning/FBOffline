@@ -5,7 +5,7 @@ window.successURL = "https://www.facebook.com/connect/login_success.html"
 window.onFacebookLogin = ->
   console.log("onFacebookLogin called")
 
-  unless localStorage.accessToken
+  unless localStorage.accessToken 
     
     chrome.tabs.getAllInWindow null, (tabs) ->
       i = 0
@@ -27,6 +27,8 @@ window.onFacebookLogin = ->
           window.get_stream()
           window.get_wall()
           window.get_friends()
+          
+          $("#loading").hide()
           
           return
         i++

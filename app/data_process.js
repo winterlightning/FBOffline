@@ -41,7 +41,11 @@
       } else {
         Feed.create(data);
       }
-      _results.push(FeedList.findByAttribute("name", tag) ? (a = FeedList.findByAttribute("name", tag), a.save()) : void 0);
+      if (FeedList.findByAttribute("name", tag)) {
+        a = FeedList.findByAttribute("name", tag);
+        a.save();
+      }
+      _results.push(window.list_holder.addall());
     }
     return _results;
   };
