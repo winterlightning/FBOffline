@@ -59,7 +59,7 @@ window.getBase64Image = (img) ->
   
   Image.create( name: img.src, image: dataURL ) 
 
-window.speak_all = ()->
+window.speak_all = ( feed_list )->
   chrome.tts.speak("starting") 
   for f in Feed.all()
     if f.type is "status"

@@ -73,7 +73,7 @@
       image: dataURL
     });
   };
-  window.speak_all = function() {
+  window.speak_all = function(feed_list) {
     var f, speak, _i, _len, _ref, _results;
     chrome.tts.speak("starting");
     _ref = Feed.all();

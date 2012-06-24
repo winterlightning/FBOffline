@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'glyphish';
+  src: url('../img/glyphish.ttf');
+}
+
 #columns {
 	position: absolute;
 	top: 45px;
@@ -106,4 +111,17 @@ header { display: block; }
 
 .media_photo {
 	border-radius: 3px;
+}
+
+.hornholder {
+	position: absolute; 
+	top: 15px; 
+	right: 5px;
+}
+
+.bullhorn { font-family: 'glyphish'; text-decoration: none; font-size: 30px; color: #aaa; }
+
+.bullhorn:hover {
+	color: #005580;
+	text-decoration: none;
 }
