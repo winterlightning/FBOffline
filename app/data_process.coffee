@@ -29,6 +29,12 @@ window.suck_down_feed = (json, tag)->
       console.log("this feed is already there")
     else
       Feed.create(data)
+      
+    #render if it's new'
+    if FeedList.findByAttribute("name", tag)
+      a = FeedList.findByAttribute("name", tag)
+      a.save()
+      
 
 window.suck_down_friends = (json) ->
 
@@ -47,6 +53,8 @@ window.get_wall = ()->
   
 window.get_friends = () ->
   window.fb_call( fb_match.friends, suck_down_friends)
+
+
   
 #takes in a url, and then store that image offline
 window.suck_in_image = (url)->

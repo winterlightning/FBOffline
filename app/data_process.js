@@ -1,6 +1,6 @@
 (function() {
   window.suck_down_feed = function(json, tag) {
-    var data, field, field_a, field_b, one, two, x, _i, _j, _len, _len2, _ref, _ref2, _results;
+    var a, data, field, field_a, field_b, one, two, x, _i, _j, _len, _len2, _ref, _ref2, _results;
     _ref = json.data;
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -36,7 +36,12 @@
       if (tag != null) {
         data["tag"] = tag;
       }
-      _results.push(Feed.findByAttribute("id", x["id"]) != null ? console.log("this feed is already there") : Feed.create(data));
+      if (Feed.findByAttribute("id", x["id"]) != null) {
+        console.log("this feed is already there");
+      } else {
+        Feed.create(data);
+      }
+      _results.push(FeedList.findByAttribute("name", tag) ? (a = FeedList.findByAttribute("name", tag), a.save()) : void 0);
     }
     return _results;
   };

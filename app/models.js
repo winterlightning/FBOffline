@@ -24,6 +24,7 @@
     }
     FeedList.configure("FeedList", "tag", "name", "icon");
     FeedList.extend(Spine.Model.Local);
+    FeedList.extend(Spine.Events);
     return FeedList;
   })();
   Image = (function() {

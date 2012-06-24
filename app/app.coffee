@@ -46,6 +46,7 @@ class feedHolder extends Spine.Controller
 #holder of all the holders
 class listHolder extends Spine.Controller
   el: "#columns"
+  proxied: [ "addone", "addall" ]
 
   constructor: ->
     super
@@ -53,11 +54,19 @@ class listHolder extends Spine.Controller
 
   addall: ->
     console.log("add all listall")
-
+    
+    @el.html ""
     for feedList in FeedList.all()
       list = new feedHolder(item: feedList)
       @el.append( list.render().el )
       list.addall()
+      
+  addone: (list)->
+    list = new feedHolder(item: list)
+    @el.append( list.render().el )
+    list.addall()
+    
+    setTimeout("window.list_holder.addall()", 3000)
 
 $ ->
   window.list_holder = new listHolder()
@@ -88,7 +97,8 @@ window.add_column = ()->
   name = $("#column_name").val()
   user_ids = $(".chzn-select").val()
   
-  FeedList.create( name: name, tag: name )
+  f = FeedList.create( name: name, tag: name )
+  window.list_holder.addone(f)
   
   for id in $(".chzn-select").val()
     url = "/#{ id }/feed"
@@ -97,6 +107,10 @@ window.add_column = ()->
     console.log(url)
     window.fb_call( a, suck_down_feed, name )
     
+window.stop_talking = () ->
+  console.log("stop talking")
+  
+  chrome.tts.stop()
   
 exports = this
 exports.feedHolder = feedHolder

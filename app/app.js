@@ -55,6 +55,7 @@
   listHolder = (function() {
     __extends(listHolder, Spine.Controller);
     listHolder.prototype.el = "#columns";
+    listHolder.prototype.proxied = ["addone", "addall"];
     function listHolder() {
       listHolder.__super__.constructor.apply(this, arguments);
       this.addall();
@@ -62,6 +63,7 @@
     listHolder.prototype.addall = function() {
       var feedList, list, _i, _len, _ref, _results;
       console.log("add all listall");
+      this.el.html("");
       _ref = FeedList.all();
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -73,6 +75,14 @@
         _results.push(list.addall());
       }
       return _results;
+    };
+    listHolder.prototype.addone = function(list) {
+      list = new feedHolder({
+        item: list
+      });
+      this.el.append(list.render().el);
+      list.addall();
+      return setTimeout("window.list_holder.addall()", 3000);
     };
     return listHolder;
   })();
@@ -101,15 +111,16 @@
     return $('#myModal').modal({});
   };
   window.add_column = function() {
-    var a, id, name, url, user_ids, _i, _len, _ref, _results;
+    var a, f, id, name, url, user_ids, _i, _len, _ref, _results;
     console.log("called add column");
     $('#myModal').modal('hide');
     name = $("#column_name").val();
     user_ids = $(".chzn-select").val();
-    FeedList.create({
+    f = FeedList.create({
       name: name,
       tag: name
     });
+    window.list_holder.addone(f);
     _ref = $(".chzn-select").val();
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -122,6 +133,10 @@
       _results.push(window.fb_call(a, suck_down_feed, name));
     }
     return _results;
+  };
+  window.stop_talking = function() {
+    console.log("stop talking");
+    return chrome.tts.stop();
   };
   exports = this;
   exports.feedHolder = feedHolder;
