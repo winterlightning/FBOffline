@@ -40,6 +40,7 @@
     feedHolder.prototype.addall = function() {
       var feed, r, _i, _len, _ref, _results;
       console.log("add all");
+      this.holder.html("");
       _ref = Feed.findAllByAttribute("tag", this.item.tag);
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -77,7 +78,7 @@
   })();
   $(function() {
     var x, _i, _len, _ref;
-    new listHolder();
+    window.list_holder = new listHolder();
     chrome.tts.stop();
     if (FeedList.all().length === 0) {
       FeedList.create({
@@ -96,6 +97,32 @@
     }
     return $(".chzn-select").chosen();
   });
+  window.fb_selector = function() {
+    return $('#myModal').modal({});
+  };
+  window.add_column = function() {
+    var a, id, name, url, user_ids, _i, _len, _ref, _results;
+    console.log("called add column");
+    $('#myModal').modal('hide');
+    name = $("#column_name").val();
+    user_ids = $(".chzn-select").val();
+    FeedList.create({
+      name: name,
+      tag: name
+    });
+    _ref = $(".chzn-select").val();
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      id = _ref[_i];
+      url = "/" + id + "/feed";
+      a = {
+        url: url
+      };
+      console.log(url);
+      _results.push(window.fb_call(a, suck_down_feed, name));
+    }
+    return _results;
+  };
   exports = this;
   exports.feedHolder = feedHolder;
 }).call(this);

@@ -18,7 +18,7 @@
       body {
         padding-top: 60px;
         padding-bottom: 40px;
-      }
+      }w2s
       .sidebar-nav {
         padding: 9px 0;
       }
@@ -114,7 +114,7 @@
           <div class="nav-collapse">
             <ul class="nav" style="top: 2px;">
               <li><a href="#" onclick="fb_selector()"><span style="font-family: 'glyphish'; font-size: 30px; vertical-align: middle">+</span>Add Column</a></li>
-              <li><a href="#"><span style="font-family: 'glyphish'; font-size: 30px; vertical-align: middle">Â</span>Update Status</a></li>
+              <!-- <li><a href="#"><span style="font-family: 'glyphish'; font-size: 30px; vertical-align: middle">Â</span>Update Status</a></li> -->
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -134,10 +134,12 @@
         <select data-placeholder="Pick your friend" style="width:350px;" multiple class="chzn-select  chzn-ltr" tabindex="10" id="friendpicker">
           <option value=""></option>
         </select>
+        <p>Choose a name for the column</p>
+        <input type="text" class="span2" id="column_name" />
 	  </div>
 	  <div class="modal-footer">
 	    <a href="#" class="btn" data-dismiss="modal">Close</a>
-	    <a href="#" class="btn btn-primary">Save changes</a>
+	    <a href="#" class="btn btn-primary" onclick="add_column()">Save changes</a>
 	  </div>
 	</div>
 

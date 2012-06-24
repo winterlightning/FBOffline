@@ -112,7 +112,4 @@
     }
     return _results;
   };
-  window.fb_selector = function() {
-    return $('#myModal').modal({});
-  };
 }).call(this);

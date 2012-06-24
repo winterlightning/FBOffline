@@ -37,7 +37,8 @@ class feedHolder extends Spine.Controller
 
   addall: ->
     console.log("add all")
-
+    
+    @holder.html("")
     for feed in Feed.findAllByAttribute("tag", @item.tag)
       r = $("#feedTmpl").tmpl( feed )
       @holder.append(r)
@@ -59,7 +60,7 @@ class listHolder extends Spine.Controller
       list.addall()
 
 $ ->
-  new listHolder()
+  window.list_holder = new listHolder()
  
   chrome.tts.stop()
 
@@ -71,6 +72,31 @@ $ ->
     $("#friendpicker").append("<option value='#{x.id}'>#{x.name}</option>")
   
   $(".chzn-select").chosen();
+
+
+window.fb_selector = ()->
+
+  $('#myModal').modal({})
+  
+  #$(".chozenSelect").val();
+
+window.add_column = ()->
+  console.log("called add column")
+  
+  $('#myModal').modal('hide')
+  
+  name = $("#column_name").val()
+  user_ids = $(".chzn-select").val()
+  
+  FeedList.create( name: name, tag: name )
+  
+  for id in $(".chzn-select").val()
+    url = "/#{ id }/feed"
+    a = url: url
+    
+    console.log(url)
+    window.fb_call( a, suck_down_feed, name )
+    
   
 exports = this
 exports.feedHolder = feedHolder

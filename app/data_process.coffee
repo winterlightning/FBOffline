@@ -80,9 +80,3 @@ window.speak_all = ( feed_list )->
       speak = name if f.name?
     
       chrome.tts.speak(f["from&name"] + " said " + speak + ".", {'enqueue': true} ) 
- 
-window.fb_selector = ()->
-  
-
-  $('#myModal').modal({})
-  
