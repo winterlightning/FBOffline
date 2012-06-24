@@ -9,6 +9,7 @@
 	
 	<script src="docs/assets/js/jquery.js"></script>
 	<script src="js/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.timeago.js" type="text/javascript" charset="utf-8"></script>
 	
     <!-- Le styles -->
     <link href="docs/assets/css/bootstrap.css" rel="stylesheet">
@@ -55,15 +56,16 @@
 		<div class="feed">
 			<div class="feed_content">
 				<header>
-					<div class="time">1h</div>
-					<img src="http://graph.facebook.com/1340340065/picture" alt="" class="avatar">
+					<div class="time">${ jQuery.timeago(updated_time) }</div>
+					<img src="http://graph.facebook.com/${ $data['from&id'] }/picture" alt="" class="avatar">
 					
-					<strong class="name">Anthony Baw</strong>
-					<p>Happy Birthday Phil! It's rage time.</p>
+					<strong class="name">${ $data['from&name'] }</strong>
+					<p>${message}</p>
+					{{if picture}}
 					<div class="media">
-						<img src="http://photos-d.ak.fbcdn.net/hphotos-ak-ash3/598968_10100605122561335_1714794559_s.jpg" alt="mediaelement" class="media_photo" height="65" width="auto">
+						<img src="${picture}" alt="mediaelement" class="media_photo" height="65" width="auto">
 					</div>
-					
+					{{/if}}
 				</header>						
 			</div>
 		</div>	    
@@ -112,23 +114,6 @@
 			</header>
 			
 			<div class="holder">
-				<div class="feed">
-					
-					<div class="feed_content">
-						<header>
-							<div class="time">1h</div>
-							<img src="http://graph.facebook.com/1340340065/picture" alt="" class="avatar">
-							
-							<strong class="name">Anthony Baw</strong>
-							<p>Happy Birthday Phil! It's rage time.</p>
-							<div class="media">
-								<img src="http://photos-d.ak.fbcdn.net/hphotos-ak-ash3/598968_10100605122561335_1714794559_s.jpg" alt="mediaelement" class="media_photo" height="65" width="auto">
-							</div>
-							
-						</header>						
-					</div>
-					
-				</div>
 			</div>
 		</div>
 		
