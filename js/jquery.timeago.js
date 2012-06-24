@@ -33,15 +33,15 @@
         ago: null, // DEPRECATED, use suffixAgo
         fromNow: null, // DEPRECATED, use suffixFromNow
         seconds: "less than a minute",
-        minute: "about a minute",
+        minute: "a minute",
         minutes: "%d minutes",
-        hour: "about an hour",
-        hours: "about %d hours",
+        hour: "a hour",
+        hours: "%d hours",
         day: "a day",
         days: "%d days",
-        month: "about a month",
+        month: "a month",
         months: "%d months",
-        year: "about a year",
+        year: "a year",
         years: "%d years"
       }
     },
