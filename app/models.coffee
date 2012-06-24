@@ -7,6 +7,11 @@ class FeedList extends Spine.Model
   @configure "FeedList", "tag", "name", "icon"
   @extend Spine.Model.Local
 
+class Image extends Spine.Model
+  @configure "Image", "image", "name", "id"
+  @extend Spine.Model.Local
+
 exports = this
 this.Feed = Feed
 this.FeedList = FeedList
+this.Image = Image

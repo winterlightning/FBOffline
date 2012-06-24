@@ -57,7 +57,7 @@
 			<div class="feed_content">
 				<header>
 					<div class="time">${ jQuery.timeago(updated_time) }</div>
-					<img src="http://graph.facebook.com/${ $data['from&id'] }/picture" alt="" class="avatar">
+					<img src="http://graph.facebook.com/${ $data['from&id'] }/picture" alt="" class="avatar ${ $data['from&id'] }">
 					
 					<strong class="name">${ $data['from&name'] }  {{if $data['to&name'] }} > ${ $data['to&name'] } {{/if}}</strong>
 					<p>${message} ${story} ${name}</p>

@@ -2,6 +2,7 @@
 
 Feed.fetch()
 FeedList.fetch()
+Image.fetch()
 
 #individual feed item
 
@@ -52,6 +53,10 @@ class listHolder extends Spine.Controller
 
 $ ->
   new listHolder()
+
+  if FeedList.all().length is 0
+    FeedList.create( name: "Newfeed", "tag": "stream" )
+    FeedList.create( name: "Your Wall", "tag": "wall" )
   
 exports = this
 exports.feedHolder = feedHolder

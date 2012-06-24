@@ -46,4 +46,44 @@
   window.get_wall = function() {
     return window.fb_call(fb_match.wall, suck_down_feed, "wall");
   };
+  window.suck_in_image = function(url) {
+    console.log("suck in image");
+    return $.ajax({
+      url: url,
+      cache: false
+    }).done(function(result) {
+      console.log(result);
+      return Image.create({
+        name: url,
+        image: result
+      });
+    });
+  };
+  window.getBase64Image = function(img) {
+    var canvas, ctx, dataURL;
+    canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    dataURL = canvas.toDataURL("image/png");
+    dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+    return Image.create({
+      name: img.src,
+      image: dataURL
+    });
+  };
+  window.speak_all = function() {
+    var f, speak, _i, _len, _ref, _results;
+    chrome.tts.speak("starting");
+    _ref = Feed.all();
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      f = _ref[_i];
+      _results.push(f.type === "status" ? (f.message != null ? speak = f.message : void 0, f.story != null ? speak = f.story : void 0, f.name != null ? speak = name : void 0, chrome.tts.speak(f["from&name"] + " said " + speak + ".", {
+        'enqueue': true
+      })) : void 0);
+    }
+    return _results;
+  };
 }).call(this);

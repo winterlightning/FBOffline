@@ -35,3 +35,37 @@ window.get_stream = ()->
   
 window.get_wall = ()->
   window.fb_call( fb_match.wall, suck_down_feed, "wall" )
+  
+#takes in a url, and then store that image offline
+window.suck_in_image = (url)->
+  console.log("suck in image")
+  
+  $.ajax(
+    url: url
+    cache: false
+  ).done (result) ->
+    console.log result 
+    Image.create( name: url, image: result )  
+  
+  
+window.getBase64Image = (img) ->
+  canvas = document.createElement("canvas")
+  canvas.width = img.width
+  canvas.height = img.height
+  ctx = canvas.getContext("2d")
+  ctx.drawImage img, 0, 0
+  dataURL = canvas.toDataURL("image/png")
+  dataURL.replace /^data:image\/(png|jpg);base64,/, ""
+  
+  Image.create( name: img.src, image: dataURL ) 
+
+window.speak_all = ()->
+  chrome.tts.speak("starting") 
+  for f in Feed.all()
+    if f.type is "status"
+      speak = f.message if f.message?
+      speak = f.story if f.story?
+      speak = name if f.name?
+    
+      chrome.tts.speak(f["from&name"] + " said " + speak + ".", {'enqueue': true} ) 
+ 

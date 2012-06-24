@@ -9,6 +9,9 @@
   },  	
   "permissions": [
     "tabs",
-    "*.facebook.com/*"
+    "*.facebook.com/*",
+    "*.fbcdn.net/*",
+    "unlimitedStorage",
+    "tts"
   ]
 }

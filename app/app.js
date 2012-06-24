@@ -10,6 +10,7 @@
   };
   Feed.fetch();
   FeedList.fetch();
+  Image.fetch();
   feedHolder = (function() {
     __extends(feedHolder, Spine.Controller);
     feedHolder.prototype.tag = "div.column";
@@ -68,7 +69,17 @@
     return listHolder;
   })();
   $(function() {
-    return new listHolder();
+    new listHolder();
+    if (FeedList.all().length === 0) {
+      FeedList.create({
+        name: "Newfeed",
+        "tag": "stream"
+      });
+      return FeedList.create({
+        name: "Your Wall",
+        "tag": "wall"
+      });
+    }
   });
   exports = this;
   exports.feedHolder = feedHolder;
