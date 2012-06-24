@@ -69,3 +69,30 @@ window.speak_all = ( feed_list )->
     
       chrome.tts.speak(f["from&name"] + " said " + speak + ".", {'enqueue': true} ) 
  
+window.fb_selector = ()->
+  a = [{
+         "name": "Eric Hu",
+         "id": "114405"
+      },
+      {
+         "name": "Ning Lu",
+         "id": "215103"
+      },
+      {
+         "name": "Serge Faguet",
+         "id": "221766"
+      },
+      {
+         "name": "Ajay Kishore",
+         "id": "301508"
+      }]
+      
+  TDFriendSelector.init()
+  TDFriendSelector.setFriends(a)
+  
+  selector1 = TDFriendSelector.newInstance(callbackSubmit: (selectedFriendIds) ->
+    console.log "The following friends were selected: " + selectedFriendIds.join(", ")
+  )
+  
+  selector1.showFriendSelector()
+  

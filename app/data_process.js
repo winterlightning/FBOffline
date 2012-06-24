@@ -86,4 +86,30 @@
     }
     return _results;
   };
+  window.fb_selector = function() {
+    var a, selector1;
+    a = [
+      {
+        "name": "Eric Hu",
+        "id": "114405"
+      }, {
+        "name": "Ning Lu",
+        "id": "215103"
+      }, {
+        "name": "Serge Faguet",
+        "id": "221766"
+      }, {
+        "name": "Ajay Kishore",
+        "id": "301508"
+      }
+    ];
+    TDFriendSelector.init();
+    TDFriendSelector.setFriends(a);
+    selector1 = TDFriendSelector.newInstance({
+      callbackSubmit: function(selectedFriendIds) {
+        return console.log("The following friends were selected: " + selectedFriendIds.join(", "));
+      }
+    });
+    return selector1.showFriendSelector();
+  };
 }).call(this);
