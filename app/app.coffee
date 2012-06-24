@@ -18,7 +18,6 @@ class feedHolder extends Spine.Controller
 
     for feed in Feed.all()
       r = $("#feedTmpl").tmpl( feed )
-      console.log(r)
       @el.append(r)
 
 $ ->

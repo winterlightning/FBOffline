@@ -24,7 +24,6 @@
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         feed = _ref[_i];
         r = $("#feedTmpl").tmpl(feed);
-        console.log(r);
         _results.push(this.el.append(r));
       }
       return _results;

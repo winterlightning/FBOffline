@@ -11,8 +11,9 @@ window.suck_down_feed = (json)->
         field_a = field.split("&")[0]
         field_b = field.split("&")[1]
         
-        one = x[field_a]
-        data[field] = one[field_b]
+        if x[field_a]?
+          one = x[field_a]
+          data[field] = one[field_b] if one[field_b]?
 
     console.log(data)
     
