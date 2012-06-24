@@ -11,6 +11,9 @@
     wall: {
       url: "/me/feed",
       method: "GET"
+    },
+    friends: {
+      url: "/me/friends"
     }
   };
   window.fb_base = "https://graph.facebook.com";

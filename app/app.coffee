@@ -3,6 +3,7 @@
 Feed.fetch()
 FeedList.fetch()
 Image.fetch()
+Friends.fetch()
 
 #individual feed item
 
@@ -59,12 +60,17 @@ class listHolder extends Spine.Controller
 
 $ ->
   new listHolder()
-  
+ 
   chrome.tts.stop()
 
   if FeedList.all().length is 0
     FeedList.create( name: "Newfeed", "tag": "stream" )
     FeedList.create( name: "Your Wall", "tag": "wall" )
+  
+  for x in Friends.all()
+    $("#friendpicker").append("<option value='#{x.id}'>#{x.name}</option>")
+  
+  $(".chzn-select").chosen();
   
 exports = this
 exports.feedHolder = feedHolder

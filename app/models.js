@@ -1,5 +1,5 @@
 (function() {
-  var Feed, FeedList, Image, exports;
+  var Feed, FeedList, Friends, Image, exports;
   var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
     for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
     function ctor() { this.constructor = child; }
@@ -35,8 +35,18 @@
     Image.extend(Spine.Model.Local);
     return Image;
   })();
+  Friends = (function() {
+    __extends(Friends, Spine.Model);
+    function Friends() {
+      Friends.__super__.constructor.apply(this, arguments);
+    }
+    Friends.configure("Friends", "name", "id");
+    Friends.extend(Spine.Model.Local);
+    return Friends;
+  })();
   exports = this;
   this.Feed = Feed;
   this.FeedList = FeedList;
   this.Image = Image;
+  this.Friends = Friends;
 }).call(this);

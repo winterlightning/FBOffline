@@ -30,11 +30,23 @@ window.suck_down_feed = (json, tag)->
     else
       Feed.create(data)
 
+window.suck_down_friends = (json) ->
+
+  for x in json.data
+    data = {}
+
+    for field in Friends.attributes
+      data[field] = x[field] if x[field]?
+      Friends.create(data)
+
 window.get_stream = ()->
   window.fb_call( fb_match.newsfeed, suck_down_feed, "stream" )
   
 window.get_wall = ()->
   window.fb_call( fb_match.wall, suck_down_feed, "wall" )
+  
+window.get_friends = () ->
+  window.fb_call( fb_match.friends, suck_down_friends)
   
 #takes in a url, and then store that image offline
 window.suck_in_image = (url)->
@@ -70,29 +82,7 @@ window.speak_all = ( feed_list )->
       chrome.tts.speak(f["from&name"] + " said " + speak + ".", {'enqueue': true} ) 
  
 window.fb_selector = ()->
-  a = [{
-         "name": "Eric Hu",
-         "id": "114405"
-      },
-      {
-         "name": "Ning Lu",
-         "id": "215103"
-      },
-      {
-         "name": "Serge Faguet",
-         "id": "221766"
-      },
-      {
-         "name": "Ajay Kishore",
-         "id": "301508"
-      }]
-      
-  TDFriendSelector.init()
-  TDFriendSelector.setFriends(a)
   
-  selector1 = TDFriendSelector.newInstance(callbackSubmit: (selectedFriendIds) ->
-    console.log "The following friends were selected: " + selectedFriendIds.join(", ")
-  )
-  
-  selector1.showFriendSelector()
+
+  $('#myModal').modal({})
   

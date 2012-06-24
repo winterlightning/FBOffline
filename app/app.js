@@ -11,6 +11,7 @@
   Feed.fetch();
   FeedList.fetch();
   Image.fetch();
+  Friends.fetch();
   feedHolder = (function() {
     __extends(feedHolder, Spine.Controller);
     feedHolder.prototype.tag = "div.column";
@@ -75,6 +76,7 @@
     return listHolder;
   })();
   $(function() {
+    var x, _i, _len, _ref;
     new listHolder();
     chrome.tts.stop();
     if (FeedList.all().length === 0) {
@@ -82,11 +84,17 @@
         name: "Newfeed",
         "tag": "stream"
       });
-      return FeedList.create({
+      FeedList.create({
         name: "Your Wall",
         "tag": "wall"
       });
     }
+    _ref = Friends.all();
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      x = _ref[_i];
+      $("#friendpicker").append("<option value='" + x.id + "'>" + x.name + "</option>");
+    }
+    return $(".chzn-select").chosen();
   });
   exports = this;
   exports.feedHolder = feedHolder;

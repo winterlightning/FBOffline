@@ -11,7 +11,12 @@ class Image extends Spine.Model
   @configure "Image", "image", "name", "id"
   @extend Spine.Model.Local
 
+class Friends extends Spine.Model
+  @configure "Friends", "name", "id"
+  @extend Spine.Model.Local
+
 exports = this
 this.Feed = Feed
 this.FeedList = FeedList
 this.Image = Image
+this.Friends = Friends

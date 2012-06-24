@@ -60,12 +60,6 @@
 	left: 0;
 	bottom: 0;
 	width: 338px;
-	-webkit-transition-property: left;
-	transition-property: left;
-	-webkit-transition-duration: 350ms;
-	transition-duration: 350ms;
-	-webkit-transition-timing-function: ease-in-out;
-	transition-timing-function: ease-in-out;
 	overflow-y: auto;
 	overflow-x: hidden;
 }

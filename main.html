@@ -10,7 +10,7 @@
 	<script src="docs/assets/js/jquery.js"></script>
 	<script src="js/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery.timeago.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/tdfriendselector.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/chosen.jquery.js" type="text/javascript" charset="utf-8"></script>
 	
     <!-- Le styles -->
     <link href="docs/assets/css/bootstrap.css" rel="stylesheet">
@@ -39,7 +39,7 @@
     
     <!-- non twitter css -->
     <link href="css/main.css" rel="stylesheet">
-    <link href="css/tdfriendselector.css" rel="stylesheet">
+    <link href="css/chosen.css" rel="stylesheet">
     
     <!-- fb shit -->
     <script src="app/fb_connect.js"></script>
@@ -113,7 +113,7 @@
           
           <div class="nav-collapse">
             <ul class="nav" style="top: 2px;">
-              <li><a href="#"><span style="font-family: 'glyphish'; font-size: 30px; vertical-align: middle">+</span>Add Column</a></li>
+              <li><a href="#" onclick="fb_selector()"><span style="font-family: 'glyphish'; font-size: 30px; vertical-align: middle">+</span>Add Column</a></li>
               <li><a href="#"><span style="font-family: 'glyphish'; font-size: 30px; vertical-align: middle">Â</span>Update Status</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -124,34 +124,22 @@
 	<div id="columns">		
 	</div>
 
-	<!-- Markup for These Days Friend Selector -->
-	<div id="TDFriendSelector">
-		<div class="TDFriendSelector_dialog">
-			<a href="#" id="TDFriendSelector_buttonClose">x</a>
-			<div class="TDFriendSelector_form">
-				<div class="TDFriendSelector_header">
-					<p>Select your friends</p>
-				</div>
-				<div class="TDFriendSelector_content">
-					<p>Then you can invite them to join you in the app.</p>
-					<div class="TDFriendSelector_searchContainer TDFriendSelector_clearfix">
-						<div class="TDFriendSelector_selectedCountContainer"><span class="TDFriendSelector_selectedCount">0</span> / <span class="TDFriendSelector_selectedCountMax">0</span> friends selected</div>
-						<input type="text" placeholder="Search friends" id="TDFriendSelector_searchField" />
-					</div>
-					<div class="TDFriendSelector_friendsContainer"></div>
-				</div>
-				<div class="TDFriendSelector_footer TDFriendSelector_clearfix">
-					<a href="#" id="TDFriendSelector_pagePrev" class="TDFriendSelector_disabled">Previous</a>
-					<a href="#" id="TDFriendSelector_pageNext">Next</a>
-					<div class="TDFriendSelector_pageNumberContainer">
-						Page <span id="TDFriendSelector_pageNumber">1</span> / <span id="TDFriendSelector_pageNumberTotal">1</span>
-					</div>
-					<a href="#" id="TDFriendSelector_buttonOK">OK</a>
-				</div>
-			</div>
-		</div>
+	<div class="modal hide" id="myModal">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal">×</button>
+	    <h3>Add a column</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>Type in your friend's name in the input, a new column will be created from their newsfeed.</p>
+        <select data-placeholder="Pick your friend" style="width:350px;" multiple class="chzn-select  chzn-ltr" tabindex="10" id="friendpicker">
+          <option value=""></option>
+        </select>
+	  </div>
+	  <div class="modal-footer">
+	    <a href="#" class="btn" data-dismiss="modal">Close</a>
+	    <a href="#" class="btn btn-primary">Save changes</a>
+	  </div>
 	</div>
-	
 
     <!-- Le javascript
     ================================================== -->

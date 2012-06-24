@@ -40,11 +40,37 @@
     }
     return _results;
   };
+  window.suck_down_friends = function(json) {
+    var data, field, x, _i, _len, _ref, _results;
+    _ref = json.data;
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      x = _ref[_i];
+      data = {};
+      _results.push((function() {
+        var _j, _len2, _ref2, _results2;
+        _ref2 = Friends.attributes;
+        _results2 = [];
+        for (_j = 0, _len2 = _ref2.length; _j < _len2; _j++) {
+          field = _ref2[_j];
+          if (x[field] != null) {
+            data[field] = x[field];
+          }
+          _results2.push(Friends.create(data));
+        }
+        return _results2;
+      })());
+    }
+    return _results;
+  };
   window.get_stream = function() {
     return window.fb_call(fb_match.newsfeed, suck_down_feed, "stream");
   };
   window.get_wall = function() {
     return window.fb_call(fb_match.wall, suck_down_feed, "wall");
+  };
+  window.get_friends = function() {
+    return window.fb_call(fb_match.friends, suck_down_friends);
   };
   window.suck_in_image = function(url) {
     console.log("suck in image");
@@ -87,29 +113,6 @@
     return _results;
   };
   window.fb_selector = function() {
-    var a, selector1;
-    a = [
-      {
-        "name": "Eric Hu",
-        "id": "114405"
-      }, {
-        "name": "Ning Lu",
-        "id": "215103"
-      }, {
-        "name": "Serge Faguet",
-        "id": "221766"
-      }, {
-        "name": "Ajay Kishore",
-        "id": "301508"
-      }
-    ];
-    TDFriendSelector.init();
-    TDFriendSelector.setFriends(a);
-    selector1 = TDFriendSelector.newInstance({
-      callbackSubmit: function(selectedFriendIds) {
-        return console.log("The following friends were selected: " + selectedFriendIds.join(", "));
-      }
-    });
-    return selector1.showFriendSelector();
+    return $('#myModal').modal({});
   };
 }).call(this);
