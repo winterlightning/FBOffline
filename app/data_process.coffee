@@ -1,6 +1,6 @@
 #take all the fb json and do something with it
 
-window.suck_down_feed = (json)->
+window.suck_down_feed = (json, tag)->
   for x in json.data
     data = {}
     
@@ -23,7 +23,15 @@ window.suck_down_feed = (json)->
 
     console.log(data)
     
+    data["tag"] = tag if tag?
+    
     if Feed.findByAttribute("id", x["id"])?
       console.log("this feed is already there")
     else
       Feed.create(data)
+
+window.get_stream = ()->
+  window.fb_call( fb_match.newsfeed, suck_down_feed, "stream" )
+  
+window.get_wall = ()->
+  window.fb_call( fb_match.wall, suck_down_feed, "wall" )

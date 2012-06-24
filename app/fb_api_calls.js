@@ -7,10 +7,14 @@
     newsfeed: {
       url: "/me/home",
       method: "GET"
+    },
+    wall: {
+      url: "/me/feed",
+      method: "GET"
     }
   };
   window.fb_base = "https://graph.facebook.com";
-  window.fb_call = function(obj, cb) {
+  window.fb_call = function(obj, cb, tag) {
     var params;
     params = {};
     params.access_token = localStorage.accessToken;
@@ -18,7 +22,11 @@
       console.log(res);
       window.fb_data = res;
       if (cb != null) {
-        return cb(res);
+        if (tag != null) {
+          return cb(res, tag);
+        } else {
+          return cb(res);
+        }
       }
     });
   };

@@ -1,5 +1,5 @@
 (function() {
-  var exports, feedHolder;
+  var exports, feedHolder, listHolder;
   var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
     for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
     function ctor() { this.constructor = child; }
@@ -9,29 +9,66 @@
     return child;
   };
   Feed.fetch();
+  FeedList.fetch();
   feedHolder = (function() {
     __extends(feedHolder, Spine.Controller);
-    feedHolder.prototype.el = ".holder";
+    feedHolder.prototype.tag = "div.column";
+    feedHolder.prototype.proxied = ["render", "addall"];
+    feedHolder.prototype.elements = {
+      ".holder": "holder"
+    };
     function feedHolder() {
       feedHolder.__super__.constructor.apply(this, arguments);
       this.addall();
     }
+    feedHolder.prototype.render = function() {
+      var elements;
+      elements = $("#listTmpl").tmpl(this.item);
+      this.el.html(elements);
+      this.refreshElements();
+      this.el.data("id", this.item.id);
+      return this;
+    };
     feedHolder.prototype.addall = function() {
       var feed, r, _i, _len, _ref, _results;
       console.log("add all");
-      _ref = Feed.all();
+      _ref = Feed.findAllByAttribute("tag", this.item.tag);
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         feed = _ref[_i];
         r = $("#feedTmpl").tmpl(feed);
-        _results.push(this.el.append(r));
+        _results.push(this.holder.append(r));
       }
       return _results;
     };
     return feedHolder;
   })();
+  listHolder = (function() {
+    __extends(listHolder, Spine.Controller);
+    listHolder.prototype.el = "#columns";
+    function listHolder() {
+      listHolder.__super__.constructor.apply(this, arguments);
+      this.addall();
+    }
+    listHolder.prototype.addall = function() {
+      var feedList, list, _i, _len, _ref, _results;
+      console.log("add all listall");
+      _ref = FeedList.all();
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        feedList = _ref[_i];
+        list = new feedHolder({
+          item: feedList
+        });
+        this.el.append(list.render().el);
+        _results.push(list.addall());
+      }
+      return _results;
+    };
+    return listHolder;
+  })();
   $(function() {
-    return new feedHolder();
+    return new listHolder();
   });
   exports = this;
   exports.feedHolder = feedHolder;

@@ -1,5 +1,5 @@
 (function() {
-  window.suck_down_feed = function(json) {
+  window.suck_down_feed = function(json, tag) {
     var data, field, field_a, field_b, one, two, x, _i, _j, _len, _len2, _ref, _ref2, _results;
     _ref = json.data;
     _results = [];
@@ -33,8 +33,17 @@
         }
       }
       console.log(data);
+      if (tag != null) {
+        data["tag"] = tag;
+      }
       _results.push(Feed.findByAttribute("id", x["id"]) != null ? console.log("this feed is already there") : Feed.create(data));
     }
     return _results;
+  };
+  window.get_stream = function() {
+    return window.fb_call(fb_match.newsfeed, suck_down_feed, "stream");
+  };
+  window.get_wall = function() {
+    return window.fb_call(fb_match.wall, suck_down_feed, "wall");
   };
 }).call(this);

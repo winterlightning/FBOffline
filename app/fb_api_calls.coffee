@@ -7,10 +7,14 @@ window.fb_match =
   newsfeed:
     url: "/me/home"
     method: "GET"
+    
+  wall:
+    url: "/me/feed"
+    method: "GET"
 
 window.fb_base = "https://graph.facebook.com"
 
-window.fb_call = ( obj, cb ) ->
+window.fb_call = ( obj, cb, tag ) ->
   params = {}
   #params.method = obj.method
   params.access_token = localStorage.accessToken
@@ -19,5 +23,9 @@ window.fb_call = ( obj, cb ) ->
     console.log(res) 
     window.fb_data = res
     
-    cb(res) if cb?
+    if cb?
+      if tag?
+        cb(res, tag)
+      else
+        cb(res) 
   )
