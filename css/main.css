@@ -61,6 +61,7 @@
 	transition-duration: 350ms;
 	-webkit-transition-timing-function: ease-in-out;
 	transition-timing-function: ease-in-out;
+	overflow: auto;
 }
 
 .feed {

@@ -13,7 +13,7 @@
     function Feed() {
       Feed.__super__.constructor.apply(this, arguments);
     }
-    Feed.configure("Feed", "id", "from_id", "from_name", "message", "type", "updated_time", "picture", "link");
+    Feed.configure("Feed", "id", "from&id", "from&name", "message", "type", "updated_time", "picture", "link");
     Feed.extend(Spine.Model.Local);
     return Feed;
   })();

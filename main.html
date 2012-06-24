@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
+	
+	<script src="docs/assets/js/jquery.js"></script>
     <!-- Le styles -->
     <link href="docs/assets/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
@@ -46,6 +47,25 @@
     <!--- app shit -->
     <script src="app/models.js"></script>
     <script src="app/data_process.js"></script>
+	<script src="app/app.js"></script>
+
+	<script id="feedTmpl" type="text/x-jquery-tmpl">
+		<div class="feed">
+			<div class="feed_content">
+				<header>
+					<div class="time">1h</div>
+					<img src="http://graph.facebook.com/1340340065/picture" alt="" class="avatar">
+					
+					<strong class="name">Anthony Baw</strong>
+					<p>Happy Birthday Phil! It's rage time.</p>
+					<div class="media">
+						<img src="http://photos-d.ak.fbcdn.net/hphotos-ak-ash3/598968_10100605122561335_1714794559_s.jpg" alt="mediaelement" class="media_photo" height="65" width="auto">
+					</div>
+					
+				</header>						
+			</div>
+		</div>	    
+	</script>	
     
   </head>
 
@@ -118,7 +138,6 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="docs/assets/js/jquery.js"></script>
     <script src="docs/assets/js/bootstrap-transition.js"></script>
     <script src="docs/assets/js/bootstrap-alert.js"></script>
     <script src="docs/assets/js/bootstrap-modal.js"></script>

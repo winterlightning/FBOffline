@@ -5,15 +5,18 @@ window.suck_down_feed = (json)->
     data = {}
     
     for field in Feed.attributes
-      if field.indexOf("_") is -1
+      if field.indexOf("&") is -1
         data[field] = x[field] if x[field]?
       else
-        field_a = field.split("_")[0]
-        field_b = field.split("_")[1]
+        field_a = field.split("&")[0]
+        field_b = field.split("&")[1]
         
         one = x[field_a]
         data[field] = one[field_b]
 
     console.log(data)
-
-    Feed.create(data)
+    
+    if Feed.findByAttribute("id", x["id"])?
+      console.log("this feed is already there")
+    else
+      Feed.create(data)
