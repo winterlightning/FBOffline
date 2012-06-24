@@ -16,8 +16,9 @@ window.suck_down_feed = (json)->
           data[field] = one[field_b] if one[field_b]?
 
         if field_a is "to" and x[field_a]?
+          console.log("got here")
           one = x[field_a]
-          two = one["data"]
+          two = one["data"][0]
           data[field] = two[field_b] if two[field_b]?
 
     console.log(data)

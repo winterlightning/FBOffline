@@ -23,8 +23,9 @@
             }
           }
           if (field_a === "to" && (x[field_a] != null)) {
+            console.log("got here");
             one = x[field_a];
-            two = one["data"];
+            two = one["data"][0];
             if (two[field_b] != null) {
               data[field] = two[field_b];
             }
