@@ -50,22 +50,27 @@
     return _results;
   };
   window.suck_down_friends = function(json) {
-    var data, field, x, _i, _len, _ref, _results;
+    var data, field, x, _i, _j, _len, _len2, _ref, _ref2, _results;
     _ref = json.data;
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       x = _ref[_i];
       data = {};
+      _ref2 = Friends.attributes;
+      for (_j = 0, _len2 = _ref2.length; _j < _len2; _j++) {
+        field = _ref2[_j];
+        if (x[field] != null) {
+          data[field] = x[field];
+        }
+        Friends.create(data);
+      }
       _results.push((function() {
-        var _j, _len2, _ref2, _results2;
-        _ref2 = Friends.attributes;
+        var _k, _len3, _ref3, _results2;
+        _ref3 = Friends.all();
         _results2 = [];
-        for (_j = 0, _len2 = _ref2.length; _j < _len2; _j++) {
-          field = _ref2[_j];
-          if (x[field] != null) {
-            data[field] = x[field];
-          }
-          _results2.push(Friends.create(data));
+        for (_k = 0, _len3 = _ref3.length; _k < _len3; _k++) {
+          x = _ref3[_k];
+          _results2.push($("#friendpicker").append("<option value='" + x.id + "'>" + x.name + "</option>"));
         }
         return _results2;
       })());
