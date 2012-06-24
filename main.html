@@ -6,6 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+
+	<script type="text/javascript">
+	if (document.images) {
+	    img1 = new Image();
+	    img1.src = "img/black_linen_v2.png";    
+	    img2 = new Image();
+	    img2.src = "img/fbtalk.png";   	    
+	}
+	</script>
 	
 	<script src="docs/assets/js/jquery.js"></script>
 	<script src="js/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
@@ -40,6 +49,7 @@
     <!-- non twitter css -->
     <link href="css/main.css" rel="stylesheet">
     <link href="css/chosen.css" rel="stylesheet">
+    <link href="css/auth-buttons.css" rel="stylesheet">
     
     <!-- fb shit -->
     <script src="app/fb_connect.js"></script>
@@ -90,6 +100,15 @@
 
   <body style="background-color: #444">
 
+	<div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('img/black_linen_v2.png') #000; z-index: 10000; display: block;">
+
+		<img style="margin: auto; display: block; vertical-align: middle; margin-top: 50px;" src="img/fbtalk.png" />	
+		<a target="_blank" class="btn-auth btn-facebook large" href="https://www.facebook.com/dialog/oauth?client_id=318226391597707&response_type=token&scope=email&redirect_uri=https://www.facebook.com/connect/login_success.html&scope=read_stream,publish_stream,offline_access,read_mailbox" style="margin: auto; display: block; top: -90px; width: 300px;">
+		    Sign in with <b>Facebook</b>
+		</a>
+	</div>
+
+
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -105,8 +124,8 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="https://www.facebook.com/dialog/oauth?client_id=318226391597707&response_type=token&scope=email&redirect_uri=https://www.facebook.com/connect/login_success.html&scope=read_stream,publish_stream,offline_access,read_mailbox" target="_blank">Log In</a></li>
-              <li class="divider"></li>
+              <!-- <li><a href="https://www.facebook.com/dialog/oauth?client_id=318226391597707&response_type=token&scope=email&redirect_uri=https://www.facebook.com/connect/login_success.html&scope=read_stream,publish_stream,offline_access,read_mailbox" target="_blank">Log In</a></li>
+              <li class="divider"></li> -->
               <li><a href="#">Sign Out</a></li>
             </ul>
           </div>

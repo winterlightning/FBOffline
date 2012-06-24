@@ -5,7 +5,7 @@ window.successURL = "https://www.facebook.com/connect/login_success.html"
 window.onFacebookLogin = ->
   console.log("onFacebookLogin called")
 
-  unless false
+  unless localStorage.accessToken
     
     chrome.tabs.getAllInWindow null, (tabs) ->
       i = 0

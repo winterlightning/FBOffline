@@ -71,6 +71,9 @@ class listHolder extends Spine.Controller
 $ ->
   window.list_holder = new listHolder()
  
+  if localStorage.accessToken
+    
+  
   chrome.tts.stop()
 
   if FeedList.all().length is 0
