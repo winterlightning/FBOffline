@@ -12,13 +12,19 @@ class feedHolder extends Spine.Controller
   tag: "div.column"
   
   proxied: [ "render", "addall" ]
-  
+
+  events: 
+    "click .bullhorn": "speak_all"
+    
   elements: 
     ".holder": "holder"
 
   constructor: ->
     super
     @addall()
+  
+  speak_all: ->
+    window.speak_all(@item)
 
   render: ->
     elements = $("#listTmpl").tmpl( @item )
@@ -53,6 +59,8 @@ class listHolder extends Spine.Controller
 
 $ ->
   new listHolder()
+  
+  chrome.tts.stop()
 
   if FeedList.all().length is 0
     FeedList.create( name: "Newfeed", "tag": "stream" )

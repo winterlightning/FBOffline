@@ -15,6 +15,9 @@
     __extends(feedHolder, Spine.Controller);
     feedHolder.prototype.tag = "div.column";
     feedHolder.prototype.proxied = ["render", "addall"];
+    feedHolder.prototype.events = {
+      "click .bullhorn": "speak_all"
+    };
     feedHolder.prototype.elements = {
       ".holder": "holder"
     };
@@ -22,6 +25,9 @@
       feedHolder.__super__.constructor.apply(this, arguments);
       this.addall();
     }
+    feedHolder.prototype.speak_all = function() {
+      return window.speak_all(this.item);
+    };
     feedHolder.prototype.render = function() {
       var elements;
       elements = $("#listTmpl").tmpl(this.item);
@@ -70,6 +76,7 @@
   })();
   $(function() {
     new listHolder();
+    chrome.tts.stop();
     if (FeedList.all().length === 0) {
       FeedList.create({
         name: "Newfeed",
