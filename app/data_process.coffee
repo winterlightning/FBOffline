@@ -15,6 +15,11 @@ window.suck_down_feed = (json)->
           one = x[field_a]
           data[field] = one[field_b] if one[field_b]?
 
+        if field_a is "to" and x[field_a]?
+          one = x[field_a]
+          two = one["data"]
+          data[field] = two[field_b] if two[field_b]?
+
     console.log(data)
     
     if Feed.findByAttribute("id", x["id"])?

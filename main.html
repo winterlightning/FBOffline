@@ -59,11 +59,12 @@
 					<div class="time">${ jQuery.timeago(updated_time) }</div>
 					<img src="http://graph.facebook.com/${ $data['from&id'] }/picture" alt="" class="avatar">
 					
-					<strong class="name">${ $data['from&name'] }</strong>
-					<p>${message}</p>
+					<strong class="name">${ $data['from&name'] }  ${ $data['to&name'] } </strong>
+					<p>${message} ${story}</p>
+					
 					{{if picture}}
 					<div class="media">
-						<img src="${picture}" alt="mediaelement" class="media_photo" height="65" width="auto">
+						{{if link}}<a href="${link}">{{/if}}<img src="${picture}" alt="mediaelement" class="media_photo" height="65" width="auto"></a>
 					</div>
 					{{/if}}
 				</header>						

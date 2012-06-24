@@ -1,6 +1,6 @@
 (function() {
   window.suck_down_feed = function(json) {
-    var data, field, field_a, field_b, one, x, _i, _j, _len, _len2, _ref, _ref2, _results;
+    var data, field, field_a, field_b, one, two, x, _i, _j, _len, _len2, _ref, _ref2, _results;
     _ref = json.data;
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -20,6 +20,13 @@
             one = x[field_a];
             if (one[field_b] != null) {
               data[field] = one[field_b];
+            }
+          }
+          if (field_a === "to" && (x[field_a] != null)) {
+            one = x[field_a];
+            two = one["data"];
+            if (two[field_b] != null) {
+              data[field] = two[field_b];
             }
           }
         }
