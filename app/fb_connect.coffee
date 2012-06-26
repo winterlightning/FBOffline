@@ -24,11 +24,11 @@ window.onFacebookLogin = ->
           
           chrome.tabs.onUpdated.removeListener onFacebookLogin
           
-          window.get_stream()
-          window.get_wall()
-          window.get_friends()
-          
           $("#loading").hide()
+          
+          #window.get_stream()
+          #window.get_wall()
+          #window.get_friends()
           
           return
         i++

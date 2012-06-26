@@ -143,7 +143,8 @@
   };
   window.logout = function() {
     localStorage.accessToken = "";
-    return $("#loading").show();
+    $("#loading").show();
+    return chrome.tabs.onUpdated.addListener(onFacebookLogin);
   };
   exports = this;
   exports.feedHolder = feedHolder;

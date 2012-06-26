@@ -120,9 +120,11 @@
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       f = _ref[_i];
-      _results.push(f.type === "status" ? (f.message != null ? speak = f.message : void 0, f.story != null ? speak = f.story : void 0, f.name != null ? speak = name : void 0, chrome.tts.speak(f["from&name"] + " said " + speak + ".", {
+      _results.push(f.type === "status" ? (f.message != null ? speak = f.message : void 0, f.story != null ? speak = f.story : void 0, f.name != null ? speak = name : void 0, f["to&name"] != null ? (chrome.tts.speak(f["from&name"] + " said to " + f["to&name"] + " " + speak + ".", {
         'enqueue': true
-      })) : void 0);
+      }), console.log("SPEAKING:", f["from&name"] + " said to " + f["to&name"] + " " + speak + ".")) : (chrome.tts.speak(f["from&name"] + " said " + speak + ".", {
+        'enqueue': true
+      }), console.log("SPEAKING:", f["from&name"] + " said " + speak + "."))) : void 0);
     }
     return _results;
   };

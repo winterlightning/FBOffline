@@ -119,5 +119,7 @@ window.logout = () ->
   localStorage.accessToken = ""
   $("#loading").show()
   
+  chrome.tabs.onUpdated.addListener onFacebookLogin
+  
 exports = this
 exports.feedHolder = feedHolder

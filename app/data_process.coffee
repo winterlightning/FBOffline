@@ -90,5 +90,11 @@ window.speak_all = ( feed_list )->
       speak = f.message if f.message?
       speak = f.story if f.story?
       speak = name if f.name?
-    
-      chrome.tts.speak(f["from&name"] + " said " + speak + ".", {'enqueue': true} ) 
+      
+      if f["to&name"]?
+        chrome.tts.speak(f["from&name"] + " said to " + f["to&name"] + " " + speak + ".", {'enqueue': true} ) 
+        console.log("SPEAKING:", f["from&name"] + " said to " + f["to&name"] + " " + speak + ".")
+      else
+        chrome.tts.speak(f["from&name"] + " said " + speak + ".", {'enqueue': true} ) 
+        console.log("SPEAKING:", f["from&name"] + " said " + speak + ".")
+        

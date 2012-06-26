@@ -15,9 +15,6 @@
             localStorage.accessToken = x.split("=")[1];
             console.log(localStorage.accessToken);
             chrome.tabs.onUpdated.removeListener(onFacebookLogin);
-            window.get_stream();
-            window.get_wall();
-            window.get_friends();
             $("#loading").hide();
             return;
           }
