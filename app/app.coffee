@@ -84,8 +84,9 @@ $ ->
     $("#friendpicker").append("<option value='#{x.id}'>#{x.name}</option>")
   
   $(".chzn-select").chosen();
-
-  $('#pane-target').width( window.innerWidth )
+  
+  window.Resize( $('#pane-target').width( window.innerWidth ) )
+    
 
 window.fb_selector = ()->
 

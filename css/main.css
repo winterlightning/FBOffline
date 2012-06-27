@@ -150,13 +150,18 @@ header { display: block; }
 	cursor: pointer;
 }
 
-#leftmove { left: 0px; }
-#rightmove { right: 0px; }
+#leftmove { left: -20px; -webkit-transition: left 0.3s; }
+#leftmove:hover { left: 0px; }
+
+
+#rightmove { right: -20px; }
+#rightmove:hover { right: 0px; -webkit-transition: right 0.3s; }
 
 #rightmove svg {
 	position: relative;
 	top: 35px;
 	left: 13px;
+	
 }
 
 #leftmove svg {
