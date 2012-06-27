@@ -108,7 +108,8 @@
       x = _ref[_i];
       $("#friendpicker").append("<option value='" + x.id + "'>" + x.name + "</option>");
     }
-    return $(".chzn-select").chosen();
+    $(".chzn-select").chosen();
+    return $('#pane-target').width(window.innerWidth);
   });
   window.fb_selector = function() {
     return $('#myModal').modal({});

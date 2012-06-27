@@ -20,6 +20,8 @@
 	<script src="js/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery.timeago.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/chosen.jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.scrollTo.js" type="text/javascript" charset="utf-8"></script>
+	
 	
     <!-- Le styles -->
     <link href="docs/assets/css/bootstrap.css" rel="stylesheet">
@@ -85,7 +87,7 @@
 	</script>	
 
 	<script id="listTmpl" type="text/x-jquery-tmpl">
-		<div class="column">
+		<div class="column" name="${id}">
 			<header class="column-header js-action-header " data-action="resetToTopColumn"> 
 				<h1><strong>${name}</strong></h1> 
 				<span class="hornholder"><a class="bullhorn" href="#">D</a></span>
@@ -139,8 +141,24 @@
         </div>
       </div>
     </div>
-
-	<div id="columns">		
+	
+	<div id="pane-target" class="pane">
+		<div id="columns">		
+		</div>
+		
+	</div>
+	
+	<div class="halfCircleRight" id="leftmove">
+		<svg fill="white" version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 100 83.584" enable-background="new 0 0 100 83.584" space="preserve">
+		<polygon points="41.791,83.527 0,41.736 41.791,0 69.337,0 37.562,31.777 100,31.777 100,51.977 37.785,51.977 69.394,83.584 
+			41.791,83.527 "></polygon>
+		</svg>		
+	</div>
+	<div class="halfCircleLeft" id="rightmove">
+		<svg fill="white" version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 100 83.641" enable-background="new 0 0 100 83.641" space="preserve">
+		<polygon points="58.263,0.056 100,41.85 58.263,83.641 30.662,83.641 62.438,51.866 0,51.866 0,31.611 62.213,31.611 30.605,0 
+			58.263,0.056 "></polygon>
+		</svg>		
 	</div>
 
 	<div class="modal hide" id="myModal">
