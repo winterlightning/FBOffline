@@ -170,6 +170,9 @@ header { display: block; }
 	left: 8px;
 }
 
+.navbar .brand {
+	padding: 5px 15px 0px;
+}
 
 /*testing shit*/
 div.pane {
