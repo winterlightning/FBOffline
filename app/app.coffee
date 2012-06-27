@@ -85,7 +85,7 @@ $ ->
   
   $(".chzn-select").chosen();
   
-  window.Resize( $('#pane-target').width( window.innerWidth ) )
+  $('#pane-target').width( window.innerWidth )
     
 
 window.fb_selector = ()->

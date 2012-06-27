@@ -109,7 +109,7 @@
       $("#friendpicker").append("<option value='" + x.id + "'>" + x.name + "</option>");
     }
     $(".chzn-select").chosen();
-    return window.Resize($('#pane-target').width(window.innerWidth));
+    return $('#pane-target').width(window.innerWidth);
   });
   window.fb_selector = function() {
     return $('#myModal').modal({});
