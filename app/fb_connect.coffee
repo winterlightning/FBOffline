@@ -13,10 +13,11 @@ window.onFacebookLogin = ->
       while i < tabs.length
         if tabs[i].url.indexOf(successURL) is 0
         
-          console.log("here")
+          console.log("here", tabs[i])
           params = tabs[i].url.split("#")[1]
           
           x = params.split("&")[0]
+          
           
           localStorage.accessToken = x.split("=")[1]
           
@@ -25,6 +26,7 @@ window.onFacebookLogin = ->
           chrome.tabs.onUpdated.removeListener onFacebookLogin
           
           $("#loading").hide()
+          chrome.tabs.remove(tabs[i].id)
           
           #window.get_stream()
           #window.get_wall()

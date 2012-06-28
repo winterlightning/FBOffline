@@ -9,13 +9,14 @@
         _results = [];
         while (i < tabs.length) {
           if (tabs[i].url.indexOf(successURL) === 0) {
-            console.log("here");
+            console.log("here", tabs[i]);
             params = tabs[i].url.split("#")[1];
             x = params.split("&")[0];
             localStorage.accessToken = x.split("=")[1];
             console.log(localStorage.accessToken);
             chrome.tabs.onUpdated.removeListener(onFacebookLogin);
             $("#loading").hide();
+            chrome.tabs.remove(tabs[i].id);
             return;
           }
           _results.push(i++);
