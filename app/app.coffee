@@ -63,6 +63,7 @@ class listHolder extends Spine.Controller
       
   addone: (list)->
     list = new feedHolder(item: list)
+    $('#columns').width( FeedList.all().length * 344 + 20 )
     @el.append( list.render().el )
     list.addall()
     
@@ -86,6 +87,7 @@ $ ->
   $(".chzn-select").chosen();
   
   $('#pane-target').width( $(window).width() )
+  $('#columns').width( FeedList.all().length * 344 + 20 ) #on feedlist create, this should be enlarged
     
 
 window.fb_selector = ()->

@@ -80,6 +80,7 @@
       list = new feedHolder({
         item: list
       });
+      $('#columns').width(FeedList.all().length * 344 + 20);
       this.el.append(list.render().el);
       list.addall();
       return setTimeout("window.list_holder.addall()", 3000);
@@ -109,7 +110,8 @@
       $("#friendpicker").append("<option value='" + x.id + "'>" + x.name + "</option>");
     }
     $(".chzn-select").chosen();
-    return $('#pane-target').width(window.innerWidth);
+    $('#pane-target').width($(window).width());
+    return $('#columns').width(FeedList.all().length * 344 + 20);
   });
   window.fb_selector = function() {
     return $('#myModal').modal({});
