@@ -8,7 +8,7 @@
   src: url('../img/minotaur.ttf');
 }
 
-body { width: 100%; overflow: hidden; background-image:  url("../img/black_linen_v2.png"); }
+body { width: 100%; overflow: hidden; background-image:  url("../img/black_linen_v2.png"); font-smooth: always; -webkit-font-smoothing: antialiased; }
 
 #columns {
 	position: absolute;
