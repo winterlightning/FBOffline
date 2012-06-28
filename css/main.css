@@ -3,6 +3,11 @@
   src: url('../img/glyphish.ttf');
 }
 
+@font-face {
+  font-family: 'mino';
+  src: url('../img/minotaur.ttf');
+}
+
 body { width: 100%; overflow: hidden; background-image:  url("../img/black_linen_v2.png"); }
 
 #columns {
@@ -179,6 +184,11 @@ header { display: block; }
 
 .navbar .brand {
 	padding: 5px 15px 0px;
+	font-family: 'mino';
+	text-shadow: none;
+	color: #EEE;
+	font-size: 30px;
+	font-weight: lighter;
 }
 
 .navbar .container-fluid {
