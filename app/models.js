@@ -22,7 +22,7 @@
     function FeedList() {
       FeedList.__super__.constructor.apply(this, arguments);
     }
-    FeedList.configure("FeedList", "tag", "name", "icon");
+    FeedList.configure("FeedList", "tag", "name", "icon", "content");
     FeedList.extend(Spine.Model.Local);
     FeedList.extend(Spine.Events);
     return FeedList;

@@ -4,10 +4,10 @@ class Feed extends Spine.Model
   @extend Spine.Model.Local
   
 class FeedList extends Spine.Model
-  @configure "FeedList", "tag", "name", "icon"
+  @configure "FeedList", "tag", "name", "icon", "content"
   @extend Spine.Model.Local
   @extend(Spine.Events)
-
+  
 class Image extends Spine.Model
   @configure "Image", "image", "name", "id"
   @extend Spine.Model.Local
