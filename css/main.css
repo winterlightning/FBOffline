@@ -8,11 +8,16 @@
   src: url('../img/minotaur.ttf');
 }
 
-body { width: 100%; overflow: hidden; background-image:  url("../img/black_linen_v2.png"); font-smooth: always; -webkit-font-smoothing: antialiased; }
+@font-face {
+  font-family: 'subtle';
+  src: url('../img/SubtleSansRegular.otf');
+}
+
+body { width: 100%; overflow: hidden; background-image:  url("../img/brown_linen.png"); font-smooth: always; -webkit-font-smoothing: antialiased; }
 
 #columns {
 	position: absolute;
-	top: 45px;
+	top: 55px;
 	bottom: 12px;
 	left: 4px;
 	right: 0px;
@@ -194,8 +199,10 @@ header { display: block; }
 	font-family: 'mino';
 	text-shadow: none;
 	color: #EEE;
-	font-size: 30px;
+	font-size: 40px;
 	font-weight: lighter;
+	color: black;
+	opacity: 0.7
 }
 
 .brand:hover {
@@ -203,11 +210,22 @@ header { display: block; }
 }
 
 .navbar .container-fluid {
-	background-image: -webkit-linear-gradient(rgba(200,200,200,0.23) 0%,rgba(0,0,0,0.25) 100%), url("../img/black_linen_v2.png");
-	/*box-shadow: 0px 3px 4px #000; */
-	border-bottom: 1px solid #000;
+	background-image: url("../img/woodboard_tile.png");
+	border-bottom: 1px solid black;
+	height: 50px;
+	box-shadow: 0px 3px 5px #111;
 }
 
+
+.navbar .nav > li > a {
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 25px;
+	box-shadow: inset 0 0 10px black;
+	margin-top: 6px;
+	padding: 6px 10px;
+	margin-left: 10px;
+	font-size: 15px;
+}
 
 /* logo */
 .logo {
