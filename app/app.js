@@ -17,7 +17,8 @@
     feedHolder.prototype.tag = "div.column";
     feedHolder.prototype.proxied = ["render", "addall"];
     feedHolder.prototype.events = {
-      "click .bullhorn": "speak_all"
+      "click .bullhorn": "speak_all",
+      "click .settings": "open_settings"
     };
     feedHolder.prototype.elements = {
       ".holder": "holder"
@@ -26,6 +27,10 @@
       feedHolder.__super__.constructor.apply(this, arguments);
       this.addall();
     }
+    feedHolder.prototype.open_settings = function() {
+      console.log("settings");
+      return $('#myModal').modal({});
+    };
     feedHolder.prototype.speak_all = function() {
       return window.speak_all(this.item);
     };

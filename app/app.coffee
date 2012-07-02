@@ -16,6 +16,7 @@ class feedHolder extends Spine.Controller
 
   events: 
     "click .bullhorn": "speak_all"
+    "click .settings": "open_settings"
     
   elements: 
     ".holder": "holder"
@@ -23,6 +24,12 @@ class feedHolder extends Spine.Controller
   constructor: ->
     super
     @addall()
+  
+  open_settings: ->
+    console.log "settings"
+    $('#myModal').modal({})
+    
+    
   
   speak_all: ->
     window.speak_all(@item)
