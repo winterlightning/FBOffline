@@ -257,4 +257,26 @@ div.pane {
 	background-image: url('../img/brown_denim.png'); 
 }
 
+#loading_text {
+	font-family: 'subtle';
+	font-size: 30px;
+	line-height: 35px;
+	color: #ddd;
+	width: 400px;
+	margin: auto;
+	text-align: justify;	
+	text-shadow: 1px 2px black;
+	padding-top: 40px;
+}
+
 #top_loading { box-shadow: -2px 10px 30px rgba(0,0,0,0.5); }
+
+#bottom_loading { 
+	width: 100%;
+	position: fixed;
+	bottom: 0px;
+	height: 40px;
+	display: block;
+	box-shadow: -5px -5px 30px rgba(0, 0, 0, 0.5);
+	background-image: url('../img/woodboard_tile.png');	
+}
