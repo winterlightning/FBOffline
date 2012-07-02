@@ -27,9 +27,18 @@ class feedHolder extends Spine.Controller
   
   open_settings: ->
     console.log "settings"
-    $('#myModal').modal({})
     
+    $("#dialog").dialog
+      autoOpen: true
+      width: 600
+      buttons:
+        Ok: ->
+          $(this).dialog "close"
     
+        Cancel: ->
+          $(this).dialog "close"
+     
+    $(".chzn-select").chosen();
   
   speak_all: ->
     window.speak_all(@item)

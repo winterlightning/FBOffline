@@ -29,7 +29,19 @@
     }
     feedHolder.prototype.open_settings = function() {
       console.log("settings");
-      return $('#myModal').modal({});
+      $("#dialog").dialog({
+        autoOpen: true,
+        width: 600,
+        buttons: {
+          Ok: function() {
+            return $(this).dialog("close");
+          },
+          Cancel: function() {
+            return $(this).dialog("close");
+          }
+        }
+      });
+      return $(".chzn-select").chosen();
     };
     feedHolder.prototype.speak_all = function() {
       return window.speak_all(this.item);

@@ -177,7 +177,17 @@
 		</svg>		
 	</div>
 
-	<div class="modal hide" id="myModal">
+    <!-- ui-dialog -->
+    <div id="dialog" title="Dialog Title">
+	    <p>Type in your friend's name in the input, a new column will be created from their newsfeed.</p>
+        <select data-placeholder="Pick your friend" style="width:350px;" multiple class="chzn-select  chzn-ltr" tabindex="10" id="friendpicker">
+          <option value=""></option>
+        </select>
+        <p>Choose a name for the column</p>
+        <input type="text" class="span2" id="column_name" />
+    </div>
+
+	<!-- <div class="modal hide" id="myModal">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal">×</button>
 	    <h3>Add a column</h3>
@@ -194,12 +204,7 @@
 	    <a href="#" class="btn" data-dismiss="modal">Close</a>
 	    <a href="#" class="btn btn-primary" onclick="add_column()">Save changes</a>
 	  </div>
-	</div>
-
-    <!-- ui-dialog -->
-    <div id="dialog" title="Dialog Title">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
+	</div> -->
 
     <!-- Le javascript
     ================================================== -->

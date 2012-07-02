@@ -689,7 +689,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
   border-bottom-left-radius: 0px;
 
   border-bottom:1px solid #ccc;
-
+  padding-left: 5px;
 }
 .ui-dialog .ui-dialog-title {
   float: left;
