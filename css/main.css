@@ -31,16 +31,12 @@ body { width: 100%; overflow: hidden; background-image:  url("../img/brown_linen
 	margin: 3px;
 	height: 100%;
 	width: 338px;
-	background-color: 
-	#2B2B2B;
-	border: 1px solid 
-	#212121;
+	background-color: rgba(52,48,47,1);
+	border: 1px solid #212121;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
-	-webkit-box-shadow: inset 0 1px 0px 
-	#303030;
-	box-shadow: inset 0 1px 0px 
-	#303030;
+	-webkit-box-shadow: inset 0 1px 0px #303030;
+	box-shadow: inset 0 1px 0px #303030;
 	display: inline-block;
 }
 
@@ -226,6 +222,8 @@ header { display: block; }
 	margin-left: 10px;
 	font-size: 15px;
 }
+
+.navbar .nav > li > a:hover { background-color: rgba(0, 0, 0, 0.5); }
 
 /* logo */
 .logo {
