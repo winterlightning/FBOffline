@@ -36,7 +36,8 @@ body { width: 100%; overflow: hidden; background-image:  url("../img/brown_linen
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
 	-webkit-box-shadow: inset 0 1px 0px #303030;
-	box-shadow: inset 0 1px 0px #303030;
+	box-shadow: inset 0 1px 0px 
+	#303030;
 	display: inline-block;
 }
 
@@ -230,14 +231,15 @@ header { display: block; }
 	font-family: 'mino'; 
 	font-size: 200px; 
 	line-height: 200px; 
-	color: #fff; 
+	color: black; 
 	margin: auto; 
 	display: block; 
 	vertical-align: middle; 
-	margin-top: 50px; 
+	padding-top: 25px; 
 	text-align: center;
-	color: #eee;
-	text-shadow: rgba(0, 0, 0, .5) 0 1px 1px, #ddd 0 0 10px;
+	text-shadow: rgba(0, 0, 0, .5) 0 1px 1px;
+	background-image: url('../img/woodboard_tile.png');
+	opacity: 0.7;
 }
 
 /*testing shit*/
@@ -250,3 +252,9 @@ div.pane {
 	position: absolute;
 	top: 0px;
 }
+
+#loading { 
+	background-image: url('../img/brown_denim.png'); 
+}
+
+#top_loading { box-shadow: -2px 10px 30px rgba(0,0,0,0.5); }
