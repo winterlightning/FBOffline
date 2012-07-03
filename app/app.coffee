@@ -31,6 +31,7 @@ class feedHolder extends Spine.Controller
     $("#dialog").dialog
       autoOpen: true
       width: 600
+      title: "Edit Column"
       buttons:
         Ok: ->
           $(this).dialog "close"

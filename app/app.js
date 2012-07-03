@@ -32,6 +32,7 @@
       $("#dialog").dialog({
         autoOpen: true,
         width: 600,
+        title: "Edit Column",
         buttons: {
           Ok: function() {
             return $(this).dialog("close");
