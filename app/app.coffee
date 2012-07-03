@@ -7,12 +7,11 @@ Friends.fetch()
 
 #individual feed item
 
-
 #aggregate feed holder
 class feedHolder extends Spine.Controller
   tag: "div.column"
   
-  proxied: [ "render", "addall" ]
+  proxied: [ "render", "addall", "remove" ]
 
   events: 
     "click .bullhorn": "speak_all"
@@ -23,6 +22,7 @@ class feedHolder extends Spine.Controller
 
   constructor: ->
     super
+    @item.bind("destroy", @remove)
     @addall()
   
   open_settings: ->
@@ -34,14 +34,15 @@ class feedHolder extends Spine.Controller
       title: "Edit Column"
       modal: true
       buttons:
-        Delete: ->
+        Delete: =>
+          console.log("delete item called")
+          @item.destroy()
           $(this).dialog "close"
-        Save: ->
+        Save: =>
           $(this).dialog "close"
         Cancel: ->
           $(this).dialog "close"          
-                    
-     
+
     $(".chzn-select").chosen();
   
   speak_all: ->
@@ -62,6 +63,10 @@ class feedHolder extends Spine.Controller
     for feed in Feed.findAllByAttribute("tag", @item.tag)
       r = $("#feedTmpl").tmpl( feed )
       @holder.append(r)
+
+  remove: =>
+    @el.remove()
+    $('#columns').width( FeedList.all().length * 344 + 20 ) #resize
 
 #holder of all the holders
 class listHolder extends Spine.Controller
