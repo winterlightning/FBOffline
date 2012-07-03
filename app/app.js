@@ -181,7 +181,9 @@
     user_ids = $(".chzn-select").val();
     f = FeedList.create({
       name: name,
-      tag: name
+      tag: name,
+      type: "friends",
+      content: JSON.stringify(user_id)
     });
     window.list_holder.addone(f);
     _ref = $(".chzn-select").val();

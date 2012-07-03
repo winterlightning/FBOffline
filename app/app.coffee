@@ -114,7 +114,6 @@ $ ->
   $('#pane-target').width( $(window).width() )
   $('#columns').width( FeedList.all().length * 344 + 20 ) #on feedlist create, this should be enlarged
     
-
 window.fb_selector = ()->
 
   $('#myModal').modal({})
@@ -129,7 +128,7 @@ window.add_column = ()->
   name = $("#column_name").val()
   user_ids = $(".chzn-select").val()
   
-  f = FeedList.create( name: name, tag: name )
+  f = FeedList.create( name: name, tag: name, type: "friends", content: JSON.stringify( user_id ) )
   window.list_holder.addone(f)
   
   for id in $(".chzn-select").val()
