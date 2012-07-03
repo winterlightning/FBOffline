@@ -19,6 +19,9 @@
             chrome.tabs.onUpdated.removeListener(onFacebookLogin);
             $("#loading").hide();
             chrome.tabs.remove(tabs[i].id);
+            window.get_stream();
+            window.get_wall();
+            window.get_friends();
             return;
           }
           i++;
