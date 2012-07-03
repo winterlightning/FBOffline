@@ -32,12 +32,15 @@ class feedHolder extends Spine.Controller
       autoOpen: true
       width: 600
       title: "Edit Column"
+      modal: true
       buttons:
-        Ok: ->
+        Delete: ->
           $(this).dialog "close"
-    
+        Save: ->
+          $(this).dialog "close"
         Cancel: ->
-          $(this).dialog "close"
+          $(this).dialog "close"          
+                    
      
     $(".chzn-select").chosen();
   
