@@ -23,11 +23,13 @@
 
     feedHolder.prototype.events = {
       "click .bullhorn": "speak_all",
-      "click .settings": "open_settings"
+      "click .settings": "open_settings",
+      "click .eye": "toggle_watched"
     };
 
     feedHolder.prototype.elements = {
-      ".holder": "holder"
+      ".holder": "holder",
+      ".eye": "eye"
     };
 
     function feedHolder() {
@@ -64,6 +66,13 @@
 
     feedHolder.prototype.speak_all = function() {
       return window.speak_all(this.item);
+    };
+
+    feedHolder.prototype.toggle_watched = function() {
+      console.log("toggle watch called");
+      this.item.watched = true;
+      this.item.save();
+      return this.eye.toggleClass("on");
     };
 
     feedHolder.prototype.render = function() {

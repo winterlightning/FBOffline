@@ -16,9 +16,11 @@ class feedHolder extends Spine.Controller
   events: 
     "click .bullhorn": "speak_all"
     "click .settings": "open_settings"
+    "click .eye": "toggle_watched"
     
   elements: 
     ".holder": "holder"
+    ".eye": "eye"
 
   constructor: ->
     super
@@ -47,6 +49,14 @@ class feedHolder extends Spine.Controller
   
   speak_all: ->
     window.speak_all(@item)
+
+  toggle_watched: ->
+    console.log("toggle watch called")
+    
+    @item.watched = true
+    @item.save()
+    
+    @eye.toggleClass("on")
 
   render: ->
     elements = $("#listTmpl").tmpl( @item )

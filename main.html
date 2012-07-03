@@ -94,7 +94,7 @@
 			<header class="column-header js-action-header " data-action="resetToTopColumn"> 
 				<h1><strong>${name}</strong></h1> 
 				<span class="hornholder"><a class="bullhorn" href="#">D</a></span>
-				<span class="eyeholder"><a class="eye" href="#">L</a></span>
+				<span class="eyeholder"><a class="eye {{if watched}}on{{/if}}" href="#">L</a></span>
 				<span class="settingholder"><a class="settings">Q</a></span>
 			</header>
 			
@@ -149,7 +149,7 @@
           <div class="nav-collapse">
             <ul class="nav" style="top: 2px;">
               <li><a href="#" onclick="fb_selector()">Add Column</a></li>
-              <li><a href="#" id="stoptalking" onclick="window.stop_talking()">Stop Talking</a></li>
+              <li><a href="#" id="stoptalking" onclick="window.stop_talking()">Stop Audio</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

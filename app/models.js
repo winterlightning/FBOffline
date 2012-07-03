@@ -28,7 +28,7 @@
       return FeedList.__super__.constructor.apply(this, arguments);
     }
 
-    FeedList.configure("FeedList", "tag", "name", "icon", "content", "type");
+    FeedList.configure("FeedList", "tag", "name", "icon", "content", "type", "watched");
 
     FeedList.extend(Spine.Model.Local);
 
