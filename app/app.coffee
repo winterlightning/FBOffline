@@ -37,7 +37,7 @@ class feedHolder extends Spine.Controller
         Delete: =>
           console.log("delete item called")
           @item.destroy()
-          $(this).dialog "close"
+          $("#dialog").dialog "close"
         Save: =>
           $(this).dialog "close"
         Cancel: ->
@@ -115,20 +115,34 @@ $ ->
   $('#columns').width( FeedList.all().length * 344 + 20 ) #on feedlist create, this should be enlarged
     
 window.fb_selector = ()->
-
-  $('#myModal').modal({})
+  $(".chzn-select").val("")
   
+  $("#dialog").dialog
+    autoOpen: true
+    width: 600
+    title: "Add Column"
+    modal: true
+    open: ()=>
+      console.log("clicked save")
+      $(".chzn-select").val("")
+      $(".chzn-select").blur()
+      $("#column_name").val("")
+    buttons:
+      Save: =>
+        window.add_column()
+        $("#dialog").dialog "close"
+      Cancel: ->
+        $(this).dialog "close"   
+          
   #$(".chozenSelect").val();
 
 window.add_column = ()->
   console.log("called add column")
   
-  $('#myModal').modal('hide')
-  
   name = $("#column_name").val()
   user_ids = $(".chzn-select").val()
   
-  f = FeedList.create( name: name, tag: name, type: "friends", content: JSON.stringify( user_id ) )
+  f = FeedList.create( name: name, tag: name, type: "friends", content: JSON.stringify( user_ids ) )
   window.list_holder.addone(f)
   
   for id in $(".chzn-select").val()

@@ -49,7 +49,7 @@
           Delete: function() {
             console.log("delete item called");
             _this.item.destroy();
-            return $(_this).dialog("close");
+            return $("#dialog").dialog("close");
           },
           Save: function() {
             return $(_this).dialog("close");
@@ -170,20 +170,41 @@
   });
 
   window.fb_selector = function() {
-    return $('#myModal').modal({});
+    var _this = this;
+    $(".chzn-select").val("");
+    return $("#dialog").dialog({
+      autoOpen: true,
+      width: 600,
+      title: "Add Column",
+      modal: true,
+      open: function() {
+        console.log("clicked save");
+        $(".chzn-select").val("");
+        $(".chzn-select").blur();
+        return $("#column_name").val("");
+      },
+      buttons: {
+        Save: function() {
+          window.add_column();
+          return $("#dialog").dialog("close");
+        },
+        Cancel: function() {
+          return $(this).dialog("close");
+        }
+      }
+    });
   };
 
   window.add_column = function() {
     var a, f, id, name, url, user_ids, _i, _len, _ref, _results;
     console.log("called add column");
-    $('#myModal').modal('hide');
     name = $("#column_name").val();
     user_ids = $(".chzn-select").val();
     f = FeedList.create({
       name: name,
       tag: name,
       type: "friends",
-      content: JSON.stringify(user_id)
+      content: JSON.stringify(user_ids)
     });
     window.list_holder.addone(f);
     _ref = $(".chzn-select").val();
