@@ -39,7 +39,6 @@ class feedHolder extends Spine.Controller
         console.log("clicked save")
         $(".chzn-select").val(JSON.parse(@item.content) )
         $(".chzn-select").trigger("liszt:updated")
-        $(".chzn-select").blur()
         $("#column_name").val("")      
       buttons:
         Delete: =>
