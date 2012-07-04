@@ -34,8 +34,6 @@ window.suck_down_feed = (json, tag)->
     if FeedList.findByAttribute("name", tag)
       a = FeedList.findByAttribute("name", tag)
       a.save()
-    
-    window.list_holder.addall()
 
 window.suck_down_friends = (json) ->
 
