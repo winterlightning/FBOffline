@@ -189,6 +189,7 @@
       open: function() {
         console.log("clicked save");
         $(".chzn-select").val("");
+        $(".chzn-select").trigger("liszt:updated");
         $(".chzn-select").blur();
         return $("#column_name").val("");
       },

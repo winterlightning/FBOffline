@@ -135,6 +135,7 @@ window.fb_selector = ()->
     open: ()=>
       console.log("clicked save")
       $(".chzn-select").val("")
+      $(".chzn-select").trigger("liszt:updated");
       $(".chzn-select").blur()
       $("#column_name").val("")
     buttons:
