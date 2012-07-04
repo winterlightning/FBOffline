@@ -100,12 +100,16 @@
     _results = [];
     for (_i = 0, _len = list.length; _i < _len; _i++) {
       id = list[_i];
-      url = "/" + id + "/feed";
-      a = {
-        url: url
-      };
-      console.log("calling", url);
-      _results.push(window.fb_call(a, suck_down_feed, feed_list.tag));
+      if (id === "") {
+        _results.push(console.log("empty id, need to remove these"));
+      } else {
+        url = "/" + id + "/feed";
+        a = {
+          url: url
+        };
+        console.log("calling", url);
+        _results.push(window.fb_call(a, suck_down_feed, feed_list.tag));
+      }
     }
     return _results;
   };
@@ -113,7 +117,7 @@
   window.refresh_column = function(feed_list) {
     switch (feed_list.type) {
       case "friends":
-        return console.log("get friend list");
+        return window.get_friend_list(feed_list);
       case "newstream":
         return window.get_stream();
       case "wall":

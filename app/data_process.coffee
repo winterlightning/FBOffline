@@ -60,17 +60,20 @@ window.get_friend_list = (feed_list) ->
   list = JSON.parse( feed_list.content )
 
   for id in list
-    url = "/#{ id }/feed"
-    a = url: url
-    
-    console.log("calling", url)
-    window.fb_call( a, suck_down_feed, feed_list.tag )  
+    if id is ""
+      console.log("empty id, need to remove these")
+    else  
+      url = "/#{ id }/feed"
+      a = url: url
+      
+      console.log("calling", url)
+      window.fb_call( a, suck_down_feed, feed_list.tag )  
 
 window.refresh_column = ( feed_list ) ->
 
   #"friends", "newstream", "wall", "messages" 
   switch feed_list.type
-    when "friends" then console.log("get friend list")
+    when "friends" then window.get_friend_list(feed_list)
     when "newstream" then window.get_stream()
     when "wall" then window.get_wall()
     when "messages" then console.log("messages")
