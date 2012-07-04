@@ -123,8 +123,8 @@ $ ->
   chrome.tts.stop()
 
   if FeedList.all().length is 0
-    FeedList.create( name: "Newfeed", "tag": "stream" )
-    FeedList.create( name: "Your Wall", "tag": "wall" )
+    FeedList.create( name: "Newfeed", "tag": "stream", "type", "newstream" )
+    FeedList.create( name: "Your Wall", "tag": "wall", "type", "wall" )
   
   for x in Friends.all()
     $("#friendpicker").append("<option value='#{x.id}'>#{x.name}</option>")

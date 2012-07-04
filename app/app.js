@@ -178,11 +178,11 @@
       FeedList.create({
         name: "Newfeed",
         "tag": "stream"
-      });
+      }, "type", "newstream");
       FeedList.create({
         name: "Your Wall",
         "tag": "wall"
-      });
+      }, "type", "wall");
     }
     _ref = Friends.all();
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
