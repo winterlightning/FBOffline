@@ -25,6 +25,7 @@ class feedHolder extends Spine.Controller
   constructor: ->
     super
     @item.bind("destroy", @remove)
+    @item.bind("update", @rerender)
     @addall()
   
   edit_settings: ->
@@ -63,7 +64,11 @@ class feedHolder extends Spine.Controller
     
     @eye.toggleClass("on")
 
-  render: ->
+  rerender: =>
+    @render()
+    @addall()
+
+  render: =>
     elements = $("#listTmpl").tmpl( @item )
     @el.html elements
     @refreshElements()

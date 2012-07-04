@@ -34,8 +34,13 @@
 
     function feedHolder() {
       this.remove = __bind(this.remove, this);
+
+      this.render = __bind(this.render, this);
+
+      this.rerender = __bind(this.rerender, this);
       feedHolder.__super__.constructor.apply(this, arguments);
       this.item.bind("destroy", this.remove);
+      this.item.bind("update", this.rerender);
       this.addall();
     }
 
@@ -79,6 +84,11 @@
       this.item.watched = true;
       this.item.save();
       return this.eye.toggleClass("on");
+    };
+
+    feedHolder.prototype.rerender = function() {
+      this.render();
+      return this.addall();
     };
 
     feedHolder.prototype.render = function() {
