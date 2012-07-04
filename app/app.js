@@ -168,21 +168,23 @@
   })(Spine.Controller);
 
   $(function() {
-    var x, _i, _len, _ref;
+    var a, b, x, _i, _len, _ref;
     window.list_holder = new listHolder();
     if (localStorage.accessToken) {
       $("#loading").hide();
     }
     chrome.tts.stop();
     if (FeedList.all().length === 0) {
-      FeedList.create({
+      a = FeedList.create({
         name: "Newfeed",
         "tag": "stream"
       }, "type", "newstream");
-      FeedList.create({
+      b = FeedList.create({
         name: "Your Wall",
         "tag": "wall"
       }, "type", "wall");
+      window.list_holder.addone(a);
+      window.list_holder.addone(b);
     }
     _ref = Friends.all();
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
