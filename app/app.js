@@ -51,7 +51,6 @@
           console.log("clicked save");
           $(".chzn-select").val(JSON.parse(_this.item.content));
           $(".chzn-select").trigger("liszt:updated");
-          $(".chzn-select").blur();
           return $("#column_name").val("");
         },
         buttons: {
