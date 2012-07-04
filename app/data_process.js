@@ -94,6 +94,37 @@
     return window.fb_call(fb_match.friends, suck_down_friends);
   };
 
+  window.get_friend_list = function(feed_list) {
+    var a, id, list, url, _i, _len, _results;
+    list = JSON.parse(feed_list.content);
+    _results = [];
+    for (_i = 0, _len = list.length; _i < _len; _i++) {
+      id = list[_i];
+      url = "/" + id + "/feed";
+      a = {
+        url: url
+      };
+      console.log("calling", url);
+      _results.push(window.fb_call(a, suck_down_feed, feed_list.tag));
+    }
+    return _results;
+  };
+
+  window.refresh_column = function(feed_list) {
+    switch (feed_list.type) {
+      case "friends":
+        return console.log("get friend list");
+      case "newstream":
+        return window.get_stream();
+      case "wall":
+        return window.get_wall();
+      case "messages":
+        return console.log("messages");
+      default:
+        return console.log("feed_list is not suppose to be this type", feed_list.type);
+    }
+  };
+
   window.suck_in_image = function(url) {
     console.log("suck in image");
     return $.ajax({

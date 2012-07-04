@@ -7,6 +7,8 @@ class FeedList extends Spine.Model
   @configure "FeedList", "tag", "name", "icon", "content", "type", "watched"
   @extend Spine.Model.Local
   @extend(Spine.Events)
+
+#feed list types: "friends", "newstream", "wall", "messages"  
   
 class Image extends Spine.Model
   @configure "Image", "image", "name", "id"

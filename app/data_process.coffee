@@ -30,7 +30,7 @@ window.suck_down_feed = (json, tag)->
     else
       Feed.create(data)
       
-    #render if it's new'
+    #render if it's new or if you are pulling new info
     if FeedList.findByAttribute("name", tag)
       a = FeedList.findByAttribute("name", tag)
       a.save()
@@ -56,7 +56,25 @@ window.get_wall = ()->
 window.get_friends = () ->
   window.fb_call( fb_match.friends, suck_down_friends)
 
+window.get_friend_list = (feed_list) ->
+  list = JSON.parse( feed_list.content )
 
+  for id in list
+    url = "/#{ id }/feed"
+    a = url: url
+    
+    console.log("calling", url)
+    window.fb_call( a, suck_down_feed, feed_list.tag )  
+
+window.refresh_column = ( feed_list ) ->
+
+  #"friends", "newstream", "wall", "messages" 
+  switch feed_list.type
+    when "friends" then console.log("get friend list")
+    when "newstream" then window.get_stream()
+    when "wall" then window.get_wall()
+    when "messages" then console.log("messages")
+    else console.log("feed_list is not suppose to be this type", feed_list.type)
   
 #takes in a url, and then store that image offline
 window.suck_in_image = (url)->
