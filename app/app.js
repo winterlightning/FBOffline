@@ -23,7 +23,7 @@
 
     feedHolder.prototype.events = {
       "click .bullhorn": "speak_all",
-      "click .settings": "open_settings",
+      "click .settings": "edit_settings",
       "click .eye": "toggle_watched"
     };
 
@@ -39,7 +39,7 @@
       this.addall();
     }
 
-    feedHolder.prototype.open_settings = function() {
+    feedHolder.prototype.edit_settings = function() {
       var _this = this;
       console.log("settings");
       $("#dialog").dialog({
@@ -47,6 +47,13 @@
         width: 600,
         title: "Edit Column",
         modal: true,
+        open: function() {
+          console.log("clicked save");
+          $(".chzn-select").val(JSON.parse(_this.item.content));
+          $(".chzn-select").trigger("liszt:updated");
+          $(".chzn-select").blur();
+          return $("#column_name").val("");
+        },
         buttons: {
           Delete: function() {
             console.log("delete item called");

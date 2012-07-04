@@ -107,7 +107,7 @@
 
   <body style="background-color: #444">
 
-	<div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000; display: none;">
+	<div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000;">
 
 		<!-- <img style="margin: auto; display: block; vertical-align: middle; margin-top: 50px;" src="img/fbtalk.png" />	-->
 		<div id="top_loading" style="background-image: url('img/woodboard_tile.png')">
@@ -178,12 +178,12 @@
 
     <!-- ui-dialog -->
     <div id="dialog" title="Dialog Title" style="display: none">
+	    <p>Choose a name for the column</p>
+        <input type="text" class="span2" id="column_name" />
 	    <p>Type in your friend's name in the input, a new column will be created from their newsfeed.</p>
         <select data-placeholder="Pick your friend" style="width:350px;" multiple class="chzn-select  chzn-ltr" tabindex="10" id="friendpicker">
           <option value=""></option>
         </select>
-        <p>Choose a name for the column</p>
-        <input type="text" class="span2" id="column_name" />
     </div>
 
 	<!-- <div class="modal hide" id="myModal">

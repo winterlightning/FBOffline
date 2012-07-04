@@ -15,7 +15,7 @@ class feedHolder extends Spine.Controller
 
   events: 
     "click .bullhorn": "speak_all"
-    "click .settings": "open_settings"
+    "click .settings": "edit_settings"
     "click .eye": "toggle_watched"
     
   elements: 
@@ -27,7 +27,7 @@ class feedHolder extends Spine.Controller
     @item.bind("destroy", @remove)
     @addall()
   
-  open_settings: ->
+  edit_settings: ->
     console.log "settings"
     
     $("#dialog").dialog
@@ -35,6 +35,12 @@ class feedHolder extends Spine.Controller
       width: 600
       title: "Edit Column"
       modal: true
+      open: ()=>
+        console.log("clicked save")
+        $(".chzn-select").val(JSON.parse(@item.content) )
+        $(".chzn-select").trigger("liszt:updated")
+        $(".chzn-select").blur()
+        $("#column_name").val("")      
       buttons:
         Delete: =>
           console.log("delete item called")
@@ -135,9 +141,10 @@ window.fb_selector = ()->
     open: ()=>
       console.log("clicked save")
       $(".chzn-select").val("")
-      $(".chzn-select").trigger("liszt:updated");
+      $(".chzn-select").trigger("liszt:updated")
       $(".chzn-select").blur()
       $("#column_name").val("")
+      
     buttons:
       Save: =>
         window.add_column()

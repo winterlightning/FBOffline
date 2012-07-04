@@ -289,6 +289,9 @@ div.pane {
 	background-image: url('../img/woodboard_tile.png');	
 }
 
+/* find firend div should be smaller */
+.chzn-container .chzn-results { max-height: 70px !important; }
+
 /* Scroll bar stuff */
 ::-webkit-scrollbar {
     width: 12px;
