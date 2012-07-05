@@ -50,9 +50,8 @@
   };
 
   window.suck_down_friends = function(json) {
-    var data, field, x, _i, _j, _len, _len1, _ref, _ref1, _results;
+    var data, field, x, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results;
     _ref = json.data;
-    _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       x = _ref[_i];
       data = {};
@@ -64,16 +63,12 @@
         }
         Friends.create(data);
       }
-      _results.push((function() {
-        var _k, _len2, _ref2, _results1;
-        _ref2 = Friends.all();
-        _results1 = [];
-        for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
-          x = _ref2[_k];
-          _results1.push($("#friendpicker").append("<option value='" + x.id + "'>" + x.name + "</option>"));
-        }
-        return _results1;
-      })());
+    }
+    _ref2 = Friends.all();
+    _results = [];
+    for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+      x = _ref2[_k];
+      _results.push($("#friendpicker").append("<option value='" + x.id + "'>" + x.name + "</option>"));
     }
     return _results;
   };

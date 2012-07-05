@@ -44,8 +44,8 @@ window.suck_down_friends = (json) ->
       data[field] = x[field] if x[field]?
       Friends.create(data)
 
-    for x in Friends.all()
-      $("#friendpicker").append("<option value='#{x.id}'>#{x.name}</option>")
+  for x in Friends.all()
+    $("#friendpicker").append("<option value='#{x.id}'>#{x.name}</option>")
 
 window.get_stream = ()->
   window.fb_call( fb_match.newsfeed, suck_down_feed, "stream" )
