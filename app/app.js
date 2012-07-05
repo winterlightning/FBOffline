@@ -177,12 +177,14 @@
       a = FeedList.create({
         name: "Newfeed",
         "tag": "stream",
-        "type": "newstream"
+        "type": "newstream",
+        "editable": false
       });
       b = FeedList.create({
         name: "Your Wall",
         "tag": "wall",
-        "type": "wall"
+        "type": "wall",
+        "editable": false
       });
       window.list_holder.addone(a);
       window.list_holder.addone(b);
@@ -198,7 +200,6 @@
   });
 
   window.fb_selector = function() {
-    var _this = this;
     $(".chzn-select").val("");
     return $("#dialog").dialog({
       autoOpen: true,
@@ -233,7 +234,8 @@
       name: name,
       tag: name,
       type: "friends",
-      content: JSON.stringify(user_ids)
+      content: JSON.stringify(user_ids),
+      "editable": true
     });
     window.list_holder.addone(f);
     _ref = $(".chzn-select").val();

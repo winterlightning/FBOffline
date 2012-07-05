@@ -122,8 +122,8 @@ $ ->
   chrome.tts.stop()
 
   if FeedList.all().length is 0
-    a = FeedList.create( name: "Newfeed", "tag": "stream", "type":"newstream" )
-    b = FeedList.create( name: "Your Wall", "tag": "wall", "type":"wall" )
+    a = FeedList.create( name: "Newfeed", "tag": "stream", "type":"newstream", "editable": false )
+    b = FeedList.create( name: "Your Wall", "tag": "wall", "type":"wall", "editable": false )
     
     window.list_holder.addone(a)
     window.list_holder.addone(b)
@@ -152,7 +152,7 @@ window.fb_selector = ()->
       $("#column_name").val("")
       
     buttons:
-      Save: =>
+      Save: ->
         window.add_column()
         $("#dialog").dialog "close"
       Cancel: ->
@@ -166,7 +166,7 @@ window.add_column = ()->
   name = $("#column_name").val()
   user_ids = $(".chzn-select").val()
   
-  f = FeedList.create( name: name, tag: name, type: "friends", content: JSON.stringify( user_ids ) )
+  f = FeedList.create( name: name, tag: name, type: "friends", content: JSON.stringify( user_ids ), "editable": true )
   window.list_holder.addone(f)
   
   for id in $(".chzn-select").val()

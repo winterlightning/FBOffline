@@ -98,7 +98,7 @@
 				<h1><strong>${name}</strong></h1> 
 				<span class="hornholder"><a class="bullhorn" href="#">D</a></span>
 				<span class="eyeholder"><a class="eye {{if watched}}on{{/if}}" href="#">L</a></span>
-				<span class="settingholder"><a class="settings">Q</a></span>
+				{{if editable}}<span class="settingholder"><a class="settings">Q</a></span>{{/if}}
 			</header>
 			
 			<div class="holder">
