@@ -81,9 +81,8 @@
 
     feedHolder.prototype.toggle_watched = function() {
       console.log("toggle watch called");
-      this.item.watched = true;
-      this.item.save();
-      return this.eye.toggleClass("on");
+      this.item.watched = !this.item.watched;
+      return this.item.save();
     };
 
     feedHolder.prototype.rerender = function() {
@@ -93,6 +92,7 @@
 
     feedHolder.prototype.render = function() {
       var elements;
+      this.item = FeedList.find(this.item.id);
       elements = $("#listTmpl").tmpl(this.item);
       this.el.html(elements);
       this.refreshElements();

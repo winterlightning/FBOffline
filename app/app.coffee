@@ -59,16 +59,17 @@ class feedHolder extends Spine.Controller
   toggle_watched: ->
     console.log("toggle watch called")
     
-    @item.watched = true
+    @item.watched = not @item.watched
     @item.save()
     
-    @eye.toggleClass("on")
+    #@eye.toggleClass("on")
 
   rerender: =>
     @render()
     @addall()
 
   render: =>
+    @item = FeedList.find(@item.id)
     elements = $("#listTmpl").tmpl( @item )
     @el.html elements
     @refreshElements()
