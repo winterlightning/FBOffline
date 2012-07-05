@@ -144,7 +144,7 @@ window.fb_selector = ()->
     width: 600
     title: "Add Column"
     modal: true
-    open: ()=>
+    open: ()->
       console.log("clicked save")
       $(".chzn-select").val("")
       $(".chzn-select").trigger("liszt:updated")

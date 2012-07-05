@@ -2,9 +2,8 @@
 (function() {
 
   window.suck_down_feed = function(json, tag) {
-    var a, data, field, field_a, field_b, one, two, x, _i, _j, _len, _len1, _ref, _ref1, _results;
+    var a, data, field, field_a, field_b, one, two, x, _i, _j, _len, _len1, _ref, _ref1;
     _ref = json.data;
-    _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       x = _ref[_i];
       data = {};
@@ -43,14 +42,11 @@
       } else {
         Feed.create(data);
       }
-      if (FeedList.findByAttribute("tag", tag)) {
-        a = FeedList.findByAttribute("tag", tag);
-        _results.push(a.save());
-      } else {
-        _results.push(void 0);
-      }
     }
-    return _results;
+    if (FeedList.findByAttribute("tag", tag)) {
+      a = FeedList.findByAttribute("tag", tag);
+      return a.save();
+    }
   };
 
   window.suck_down_friends = function(json) {
