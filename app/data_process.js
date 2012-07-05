@@ -43,8 +43,8 @@
       } else {
         Feed.create(data);
       }
-      if (FeedList.findByAttribute("name", tag)) {
-        a = FeedList.findByAttribute("name", tag);
+      if (FeedList.findByAttribute("tag", tag)) {
+        a = FeedList.findByAttribute("tag", tag);
         _results.push(a.save());
       } else {
         _results.push(void 0);

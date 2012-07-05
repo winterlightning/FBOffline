@@ -112,8 +112,6 @@ class listHolder extends Spine.Controller
     @el.append( list.render().el )
     list.addall()
     
-    setTimeout("window.list_holder.addall()", 3000)
-
 $ ->
   window.list_holder = new listHolder()
  

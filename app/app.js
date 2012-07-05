@@ -159,8 +159,7 @@
       });
       $('#columns').width(FeedList.all().length * 344 + 20);
       this.el.append(list.render().el);
-      list.addall();
-      return setTimeout("window.list_holder.addall()", 3000);
+      return list.addall();
     };
 
     return listHolder;

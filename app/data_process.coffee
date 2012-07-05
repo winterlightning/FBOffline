@@ -31,8 +31,8 @@ window.suck_down_feed = (json, tag)->
       Feed.create(data)
       
     #render if it's new or if you are pulling new info
-    if FeedList.findByAttribute("name", tag)
-      a = FeedList.findByAttribute("name", tag)
+    if FeedList.findByAttribute("tag", tag)
+      a = FeedList.findByAttribute("tag", tag)
       a.save()
 
 window.suck_down_friends = (json) ->
