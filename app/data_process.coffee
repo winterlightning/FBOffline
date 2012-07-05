@@ -78,30 +78,8 @@ window.refresh_column = ( feed_list ) ->
     when "wall" then window.get_wall()
     when "messages" then console.log("messages")
     else console.log("feed_list is not suppose to be this type", feed_list.type)
-  
-#takes in a url, and then store that image offline
-window.suck_in_image = (url)->
-  console.log("suck in image")
-  
-  $.ajax(
-    url: url
-    cache: false
-  ).done (result) ->
-    console.log result 
-    Image.create( name: url, image: result )  
-  
-  
-window.getBase64Image = (img) ->
-  canvas = document.createElement("canvas")
-  canvas.width = img.width
-  canvas.height = img.height
-  ctx = canvas.getContext("2d")
-  ctx.drawImage img, 0, 0
-  dataURL = canvas.toDataURL("image/png")
-  dataURL.replace /^data:image\/(png|jpg);base64,/, ""
-  
-  Image.create( name: img.src, image: dataURL ) 
 
+#speaking stuff
 window.speak_all = ( feed_list )->
   chrome.tts.speak("starting") 
   for f in Feed.findAllByAttribute("tag", feed_list.tag)
