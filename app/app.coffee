@@ -122,8 +122,8 @@ $ ->
   chrome.tts.stop()
 
   if FeedList.all().length is 0
-    a = FeedList.create( name: "Newfeed", "tag": "stream", "type":"newstream", "editable": false )
-    b = FeedList.create( name: "Your Wall", "tag": "wall", "type":"wall", "editable": false )
+    a = FeedList.create( name: "Newfeed", "tag": "stream", "type":"newstream", "editable": false, "watched": true )
+    b = FeedList.create( name: "Your Wall", "tag": "wall", "type":"wall", "editable": false, "watched": true )
     
     window.list_holder.addone(a)
     window.list_holder.addone(b)
