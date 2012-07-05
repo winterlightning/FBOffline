@@ -176,12 +176,14 @@
     if (FeedList.all().length === 0) {
       a = FeedList.create({
         name: "Newfeed",
-        "tag": "stream"
-      }, "type", "newstream");
+        "tag": "stream",
+        "type": "newstream"
+      });
       b = FeedList.create({
         name: "Your Wall",
-        "tag": "wall"
-      }, "type", "wall");
+        "tag": "wall",
+        "type": "wall"
+      });
       window.list_holder.addone(a);
       window.list_holder.addone(b);
     }
