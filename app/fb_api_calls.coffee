@@ -53,5 +53,5 @@ window.comment_obj = (id, message) ->
 
   url = fb_base + "/#{id}/comments"
 
-  $.post url, (data) ->
+  $.post url, params, (data) ->
     console.log("comment done", data)

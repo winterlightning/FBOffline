@@ -56,7 +56,7 @@
     params.access_token = localStorage.accessToken;
     params.message = message;
     url = fb_base + ("/" + id + "/comments");
-    return $.post(url, function(data) {
+    return $.post(url, params, function(data) {
       return console.log("comment done", data);
     });
   };
