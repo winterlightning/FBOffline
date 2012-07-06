@@ -5,7 +5,9 @@ FeedList.fetch()
 Image.fetch()
 Friends.fetch()
 
-#individual feed item
+
+Feed.ordersort = (a, b) ->
+  (if (a.updated_time > b.updated_time) then -1 else 1)
 
 #aggregate feed holder
 class feedHolder extends Spine.Controller
@@ -81,7 +83,7 @@ class feedHolder extends Spine.Controller
     console.log("add all")
     
     @holder.html("")
-    for feed in Feed.findAllByAttribute("tag", @item.tag)
+    for feed in Feed.findAllByAttribute("tag", @item.tag).sort(Feed.ordersort)
       r = $("#feedTmpl").tmpl( feed )
       @holder.append(r)
 

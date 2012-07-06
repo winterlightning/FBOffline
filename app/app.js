@@ -13,6 +13,14 @@
 
   Friends.fetch();
 
+  Feed.ordersort = function(a, b) {
+    if (a.updated_time > b.updated_time) {
+      return -1;
+    } else {
+      return 1;
+    }
+  };
+
   feedHolder = (function(_super) {
 
     __extends(feedHolder, _super);
@@ -104,7 +112,7 @@
       var feed, r, _i, _len, _ref, _results;
       console.log("add all");
       this.holder.html("");
-      _ref = Feed.findAllByAttribute("tag", this.item.tag);
+      _ref = Feed.findAllByAttribute("tag", this.item.tag).sort(Feed.ordersort);
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         feed = _ref[_i];
