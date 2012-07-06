@@ -62,9 +62,9 @@
         modal: true,
         open: function() {
           console.log("clicked save");
+          $("#column_name").val(_this.item.name);
           $(".chzn-select").val(JSON.parse(_this.item.content));
-          $(".chzn-select").trigger("liszt:updated");
-          return $("#column_name").val("");
+          return $(".chzn-select").trigger("liszt:updated");
         },
         buttons: {
           Delete: function() {

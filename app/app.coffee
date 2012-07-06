@@ -40,9 +40,9 @@ class feedHolder extends Spine.Controller
       modal: true
       open: ()=>
         console.log("clicked save")
+        $("#column_name").val(@item.name)
         $(".chzn-select").val(JSON.parse(@item.content) )
         $(".chzn-select").trigger("liszt:updated")
-        $("#column_name").val("")      
       buttons:
         Delete: =>
           console.log("delete item called")
