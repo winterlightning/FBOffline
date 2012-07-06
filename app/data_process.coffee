@@ -70,6 +70,7 @@ window.get_friend_list = (feed_list) ->
       window.fb_call( a, suck_down_feed, feed_list.tag )  
 
 window.refresh_column = ( feed_list ) ->
+  console.log("refresh column called")
 
   #"friends", "newstream", "wall", "messages" 
   switch feed_list.type

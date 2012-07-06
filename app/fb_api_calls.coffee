@@ -32,3 +32,17 @@ window.fb_call = ( obj, cb, tag ) ->
       else
         cb(res) 
   )
+  
+window.like_obj = (id) ->
+  console.log("like obj")
+  
+  url = "/#{id}/likes"
+  
+  $.post url, (data) ->
+    console.log("like done", data)
+
+window.comment_obj = () ->
+  console.log("comment obj")
+
+  $.post url, (data) ->
+    console.log("like done", data)

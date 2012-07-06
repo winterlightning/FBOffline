@@ -38,4 +38,20 @@
     });
   };
 
+  window.like_obj = function(id) {
+    var url;
+    console.log("like obj");
+    url = "/" + id + "/likes";
+    return $.post(url, function(data) {
+      return console.log("like done", data);
+    });
+  };
+
+  window.comment_obj = function() {
+    console.log("comment obj");
+    return $.post(url, function(data) {
+      return console.log("like done", data);
+    });
+  };
+
 }).call(this);

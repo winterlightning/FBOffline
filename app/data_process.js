@@ -106,6 +106,7 @@
   };
 
   window.refresh_column = function(feed_list) {
+    console.log("refresh column called");
     switch (feed_list.type) {
       case "friends":
         return window.get_friend_list(feed_list);
