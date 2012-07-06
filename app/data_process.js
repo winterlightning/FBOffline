@@ -124,7 +124,7 @@
   window.speak_all = function(feed_list) {
     var f, speak, _i, _len, _ref, _results;
     chrome.tts.speak("starting");
-    _ref = Feed.findAllByAttribute("tag", feed_list.tag);
+    _ref = Feed.findAllByAttribute("tag", feed_list.tag).sort(Feed.ordersort);
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       f = _ref[_i];

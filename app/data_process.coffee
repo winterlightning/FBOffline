@@ -83,7 +83,7 @@ window.refresh_column = ( feed_list ) ->
 #speaking stuff
 window.speak_all = ( feed_list )->
   chrome.tts.speak("starting") 
-  for f in Feed.findAllByAttribute("tag", feed_list.tag)
+  for f in Feed.findAllByAttribute("tag", feed_list.tag).sort(Feed.ordersort)
     if f.type is "status"
       speak = f.message if f.message?
       speak = f.story if f.story?
