@@ -13,7 +13,7 @@
   src: url('../img/SubtleSansRegular.otf');
 }
 
-body { width: 100%; overflow: hidden; background-image:  url("../img/brown_linen.png"); font-smooth: always; -webkit-font-smoothing: antialiased; }
+body { width: 100%; overflow: hidden; background-image:  url("../img/dark_brown_denim.png"); font-smooth: always; -webkit-font-smoothing: antialiased; }
 
 #columns {
 	position: absolute;
