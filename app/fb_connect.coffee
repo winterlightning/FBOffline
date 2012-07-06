@@ -31,6 +31,7 @@ window.onFacebookLogin = ->
           window.get_stream()
           window.get_wall()
           window.get_friends()
+          window.get_me()
           
           return
         i++

@@ -13,6 +13,8 @@
 
   Friends.fetch();
 
+  Me.fetch();
+
   Feed.ordersort = function(a, b) {
     if (a.updated_time > b.updated_time) {
       return -1;
@@ -61,7 +63,6 @@
         title: "Edit Column",
         modal: true,
         open: function() {
-          console.log("clicked save");
           $("#column_name").val(_this.item.name);
           $(".chzn-select").val(JSON.parse(_this.item.content));
           return $(".chzn-select").trigger("liszt:updated");
@@ -217,7 +218,6 @@
       title: "Add Column",
       modal: true,
       open: function() {
-        console.log("clicked save");
         $(".chzn-select").val("");
         $(".chzn-select").trigger("liszt:updated");
         $(".chzn-select").blur();

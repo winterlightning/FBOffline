@@ -73,9 +73,8 @@
     return _results;
   };
 
-  window.suck_down_me = function(json) {
-    var a, data;
-    data = json.data;
+  window.suck_down_me = function(data) {
+    var a;
     if (Me.all().length === 0) {
       return Me.create({
         name: data.name,
@@ -102,6 +101,7 @@
   };
 
   window.get_me = function() {
+    console.log("get me called");
     return window.fb_call(fb_match.me, suck_down_me);
   };
 

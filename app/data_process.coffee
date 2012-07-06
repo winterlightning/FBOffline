@@ -47,8 +47,7 @@ window.suck_down_friends = (json) ->
   for x in Friends.all()
     $("#friendpicker").append("<option value='#{x.id}'>#{x.name}</option>")
 
-window.suck_down_me = (json) ->
-  data = json.data
+window.suck_down_me = (data) ->
   
   if Me.all().length is 0
     Me.create( name: data.name, id: data.id )
@@ -68,6 +67,7 @@ window.get_friends = () ->
   window.fb_call( fb_match.friends, suck_down_friends)
 
 window.get_me = () ->
+  console.log("get me called")
   window.fb_call( fb_match.me, suck_down_me)
 
 window.get_friend_list = (feed_list) ->

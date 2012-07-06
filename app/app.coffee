@@ -4,6 +4,7 @@ Feed.fetch()
 FeedList.fetch()
 Image.fetch()
 Friends.fetch()
+Me.fetch()
 
 
 Feed.ordersort = (a, b) ->
@@ -39,7 +40,6 @@ class feedHolder extends Spine.Controller
       title: "Edit Column"
       modal: true
       open: ()=>
-        console.log("clicked save")
         $("#column_name").val(@item.name)
         $(".chzn-select").val(JSON.parse(@item.content) )
         $(".chzn-select").trigger("liszt:updated")
@@ -147,7 +147,6 @@ window.fb_selector = ()->
     title: "Add Column"
     modal: true
     open: ()->
-      console.log("clicked save")
       $(".chzn-select").val("")
       $(".chzn-select").trigger("liszt:updated")
       $(".chzn-select").blur()
