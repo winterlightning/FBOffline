@@ -254,6 +254,17 @@
     return _results;
   };
 
+  window.refresh_feed = function() {
+    var x, _i, _len, _ref, _results;
+    _ref = FeedList.all();
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      x = _ref[_i];
+      _results.push(window.refresh_column(x));
+    }
+    return _results;
+  };
+
   window.stop_talking = function() {
     console.log("stop talking");
     return chrome.tts.stop();

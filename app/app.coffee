@@ -175,6 +175,10 @@ window.add_column = ()->
     
     console.log(url)
     window.fb_call( a, suck_down_feed, name )
+
+window.refresh_feed = () ->
+  for x in FeedList.all()
+    window.refresh_column( x )
     
 window.stop_talking = () ->
   console.log("stop talking")
