@@ -47,6 +47,17 @@ window.suck_down_friends = (json) ->
   for x in Friends.all()
     $("#friendpicker").append("<option value='#{x.id}'>#{x.name}</option>")
 
+window.suck_down_me = (json) ->
+  data = json.data
+  
+  if Me.all().length is 0
+    Me.create( name: data.name, id: data.id )
+  else
+    a = Me.first()
+    a.name = data.name
+    a.id = data.id
+    a.save()
+
 window.get_stream = ()->
   window.fb_call( fb_match.newsfeed, suck_down_feed, "stream" )
   
@@ -55,6 +66,9 @@ window.get_wall = ()->
   
 window.get_friends = () ->
   window.fb_call( fb_match.friends, suck_down_friends)
+
+window.get_me = () ->
+  window.fb_call( fb_match.me, suck_down_me)
 
 window.get_friend_list = (feed_list) ->
   list = JSON.parse( feed_list.content )

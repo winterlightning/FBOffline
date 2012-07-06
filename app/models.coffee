@@ -18,8 +18,13 @@ class Friends extends Spine.Model
   @configure "Friends", "name", "id"
   @extend Spine.Model.Local
 
+class Me extends Spine.Model
+  @configure "Me", "name", "id"
+  @extend Spine.Model.Local
+
 exports = this
 this.Feed = Feed
 this.FeedList = FeedList
 this.Image = Image
 this.Friends = Friends
+this.Me = Me

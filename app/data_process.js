@@ -73,6 +73,22 @@
     return _results;
   };
 
+  window.suck_down_me = function(json) {
+    var a, data;
+    data = json.data;
+    if (Me.all().length === 0) {
+      return Me.create({
+        name: data.name,
+        id: data.id
+      });
+    } else {
+      a = Me.first();
+      a.name = data.name;
+      a.id = data.id;
+      return a.save();
+    }
+  };
+
   window.get_stream = function() {
     return window.fb_call(fb_match.newsfeed, suck_down_feed, "stream");
   };
@@ -83,6 +99,10 @@
 
   window.get_friends = function() {
     return window.fb_call(fb_match.friends, suck_down_friends);
+  };
+
+  window.get_me = function() {
+    return window.fb_call(fb_match.me, suck_down_me);
   };
 
   window.get_friend_list = function(feed_list) {
