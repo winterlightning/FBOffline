@@ -51,7 +51,7 @@ window.comment_obj = (id, message) ->
   params.access_token = localStorage.accessToken
   params.message = message
 
-  url = fb_base + "/#{id}/likes"
+  url = fb_base + "/#{id}/comments"
 
   $.post url, (data) ->
-    console.log("like done", data)
+    console.log("comment done", data)
