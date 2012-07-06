@@ -39,16 +39,23 @@
   };
 
   window.like_obj = function(id) {
-    var url;
+    var params, url;
     console.log("like obj");
-    url = "/" + id + "/likes";
-    return $.post(url, function(data) {
+    params = {};
+    params.access_token = localStorage.accessToken;
+    url = fb_base + ("/" + id + "/likes");
+    return $.post(url, params, function(data) {
       return console.log("like done", data);
     });
   };
 
-  window.comment_obj = function() {
+  window.comment_obj = function(id, message) {
+    var params, url;
     console.log("comment obj");
+    params = {};
+    params.access_token = localStorage.accessToken;
+    params.message = message;
+    url = fb_base + ("/" + id + "/likes");
     return $.post(url, function(data) {
       return console.log("like done", data);
     });

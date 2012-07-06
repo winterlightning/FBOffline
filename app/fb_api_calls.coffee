@@ -36,13 +36,22 @@ window.fb_call = ( obj, cb, tag ) ->
 window.like_obj = (id) ->
   console.log("like obj")
   
-  url = "/#{id}/likes"
+  params = {}
+  params.access_token = localStorage.accessToken
   
-  $.post url, (data) ->
+  url = fb_base + "/#{id}/likes"
+  
+  $.post url, params, (data) ->
     console.log("like done", data)
 
-window.comment_obj = () ->
+window.comment_obj = (id, message) ->
   console.log("comment obj")
+
+  params = {}
+  params.access_token = localStorage.accessToken
+  params.message = message
+
+  url = fb_base + "/#{id}/likes"
 
   $.post url, (data) ->
     console.log("like done", data)
