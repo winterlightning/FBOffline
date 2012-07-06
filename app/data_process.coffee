@@ -43,10 +43,10 @@ window.suck_down_friends = (json) ->
     for field in Friends.attributes
       data[field] = x[field] if x[field]?
       
-      if Friend.findByAttribute("id", x["id"])?
-        console.log("this friend is already there")
-      else
-        Friends.create(data)
+    if Friends.findByAttribute("id", x["id"])?
+      console.log("this friend is already there")
+    else
+      Friends.create(data)
 
   for x in Friends.all()
     $("#friendpicker").append("<option value='#{x.id}'>#{x.name}</option>")

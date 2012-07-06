@@ -61,11 +61,11 @@
         if (x[field] != null) {
           data[field] = x[field];
         }
-        if (Friend.findByAttribute("id", x["id"]) != null) {
-          console.log("this friend is already there");
-        } else {
-          Friends.create(data);
-        }
+      }
+      if (Friends.findByAttribute("id", x["id"]) != null) {
+        console.log("this friend is already there");
+      } else {
+        Friends.create(data);
       }
     }
     _ref2 = Friends.all();
