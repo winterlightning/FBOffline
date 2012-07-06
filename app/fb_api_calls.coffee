@@ -14,6 +14,9 @@ window.fb_match =
   
   friends:
     url: "/me/friends"
+    
+  me:
+    url: "/me"
 
 window.fb_base = "https://graph.facebook.com"
 
@@ -55,3 +58,15 @@ window.comment_obj = (id, message) ->
 
   $.post url, params, (data) ->
     console.log("comment done", data)
+
+window.post_wall = (id, message) ->
+  console.log("comment obj")
+
+  params = {}
+  params.access_token = localStorage.accessToken
+  params.message = message
+
+  url = fb_base + "/#{id}/feed"
+
+  $.post url, params, (data) ->
+    console.log("feed done", data)

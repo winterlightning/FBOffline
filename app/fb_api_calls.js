@@ -16,6 +16,9 @@
     },
     friends: {
       url: "/me/friends"
+    },
+    me: {
+      url: "/me"
     }
   };
 
@@ -58,6 +61,18 @@
     url = fb_base + ("/" + id + "/comments");
     return $.post(url, params, function(data) {
       return console.log("comment done", data);
+    });
+  };
+
+  window.post_wall = function(id, message) {
+    var params, url;
+    console.log("comment obj");
+    params = {};
+    params.access_token = localStorage.accessToken;
+    params.message = message;
+    url = fb_base + ("/" + id + "/feed");
+    return $.post(url, params, function(data) {
+      return console.log("feed done", data);
     });
   };
 
