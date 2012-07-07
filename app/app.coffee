@@ -226,6 +226,19 @@ window.update_status_window = ()->
     width: 400
     title: "Update Status"
     modal: true
+    buttons: [ 
+        text: "Update"
+        class: "btn btn-primary"
+        click: ->
+          a = $("#dialog_status_textarea").val()
+          window.post_wall(Me.first().id, a)
+          $(this).dialog "close"
+      ,
+        text: "Cancel"
+        class: "btn"
+        click: ->
+          $(this).dialog "close"  
+      ]  
   
 exports = this
 exports.feedHolder = feedHolder

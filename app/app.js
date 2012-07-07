@@ -315,7 +315,25 @@
       autoOpen: true,
       width: 400,
       title: "Update Status",
-      modal: true
+      modal: true,
+      buttons: [
+        {
+          text: "Update",
+          "class": "btn btn-primary",
+          click: function() {
+            var a;
+            a = $("#dialog_status_textarea").val();
+            window.post_wall(Me.first().id, a);
+            return $(this).dialog("close");
+          }
+        }, {
+          text: "Cancel",
+          "class": "btn",
+          click: function() {
+            return $(this).dialog("close");
+          }
+        }
+      ]
     });
   };
 
