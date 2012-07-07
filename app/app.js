@@ -67,19 +67,37 @@
           $(".chzn-select").val(JSON.parse(_this.item.content));
           return $(".chzn-select").trigger("liszt:updated");
         },
-        buttons: {
-          Delete: function() {
-            console.log("delete item called");
-            _this.item.destroy();
-            return $("#dialog").dialog("close");
-          },
-          Save: function() {
-            return $(_this).dialog("close");
-          },
-          Cancel: function() {
-            return $(this).dialog("close");
+        buttons: [
+          {
+            text: "Delete",
+            "class": "btn btn-danger",
+            click: function() {
+              console.log("delete item called");
+              _this.item.destroy();
+              return $("#dialog").dialog("close");
+            }
+          }, {
+            text: "Save",
+            "class": "btn btn-primary",
+            click: function() {
+              if (_this.item.content === JSON.stringify($(".chzn-select").val())) {
+                _this.item.content = JSON.stringify($(".chzn-select").val());
+                _this.item.name = $("#column_name").val();
+                _this.item.save();
+                window.refresh_column(_this.item);
+              } else {
+                _this.rerender();
+              }
+              return $("#dialog").dialog("close");
+            }
+          }, {
+            text: "Cancel",
+            "class": "btn",
+            click: function() {
+              return $(this).dialog("close");
+            }
           }
-        }
+        ]
       });
       return $(".chzn-select").chosen();
     };

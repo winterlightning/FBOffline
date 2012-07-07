@@ -43,15 +43,36 @@ class feedHolder extends Spine.Controller
         $("#column_name").val(@item.name)
         $(".chzn-select").val(JSON.parse(@item.content) )
         $(".chzn-select").trigger("liszt:updated")
-      buttons:
-        Delete: =>
+        
+      buttons: [ 
+        text: "Delete"
+        class: "btn btn-danger"
+        click: =>
           console.log("delete item called")
           @item.destroy()
           $("#dialog").dialog "close"
-        Save: =>
-          $(this).dialog "close"
-        Cancel: ->
-          $(this).dialog "close"          
+      ,
+        text: "Save"
+        class: "btn btn-primary"
+        click: =>
+          #check if the list of people is different, if it is, pull from cloud again
+          if @item.content is JSON.stringify( $(".chzn-select").val() )
+            @item.content = JSON.stringify( $(".chzn-select").val() )
+            @item.name = $("#column_name").val()
+            @item.save()
+            window.refresh_column( @item )
+            
+          #else just re-render
+          else
+            @rerender()
+          
+          $("#dialog").dialog "close"  
+      ,
+        text: "Cancel"
+        class: "btn"
+        click: ->
+          $(this).dialog "close"            
+      ]                    
 
     $(".chzn-select").chosen();
   
