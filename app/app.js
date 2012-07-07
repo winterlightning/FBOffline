@@ -226,14 +226,14 @@
       buttons: [
         {
           text: "Save",
-          "class": "btn btn-inverse",
+          "class": "btn btn-primary",
           click: function() {
             window.add_column();
             return $("#dialog").dialog("close");
           }
         }, {
           text: "Cancel",
-          "class": "btn btn-inverse",
+          "class": "btn",
           click: function() {
             return $(this).dialog("close");
           }

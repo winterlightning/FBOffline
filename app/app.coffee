@@ -154,13 +154,13 @@ window.fb_selector = ()->
       
     buttons: [ 
         text: "Save"
-        class: "btn btn-inverse"
+        class: "btn btn-primary"
         click: ->
           window.add_column()
           $("#dialog").dialog "close"
       ,
         text: "Cancel"
-        class: "btn btn-inverse"
+        class: "btn"
         click: ->
           $(this).dialog "close"  
       ]      
