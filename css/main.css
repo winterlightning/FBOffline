@@ -293,3 +293,6 @@ div.pane {
 .chzn-container .chzn-results { max-height: 70px !important; }
 
 #dialog { height: 200px !important; }
+
+/* dialog pane */
+.ui-dialog-buttonpane { background-image: url("../img/woodboard_tile.png") !important; }

@@ -152,13 +152,18 @@ window.fb_selector = ()->
       $(".chzn-select").blur()
       $("#column_name").val("")
       
-    buttons:
-      Save: ->
-        window.add_column()
-        $("#dialog").dialog "close"
-      Cancel: ->
-        $(this).dialog "close"   
-          
+    buttons: [ 
+        text: "Save"
+        class: "btn btn-inverse"
+        click: ->
+          window.add_column()
+          $("#dialog").dialog "close"
+      ,
+        text: "Cancel"
+        class: "btn btn-inverse"
+        click: ->
+          $(this).dialog "close"  
+      ]      
   #$(".chozenSelect").val();
 
 window.add_column = ()->

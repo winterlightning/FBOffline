@@ -223,15 +223,22 @@
         $(".chzn-select").blur();
         return $("#column_name").val("");
       },
-      buttons: {
-        Save: function() {
-          window.add_column();
-          return $("#dialog").dialog("close");
-        },
-        Cancel: function() {
-          return $(this).dialog("close");
+      buttons: [
+        {
+          text: "Save",
+          "class": "btn btn-inverse",
+          click: function() {
+            window.add_column();
+            return $("#dialog").dialog("close");
+          }
+        }, {
+          text: "Cancel",
+          "class": "btn btn-inverse",
+          click: function() {
+            return $(this).dialog("close");
+          }
         }
-      }
+      ]
     });
   };
 
