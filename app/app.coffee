@@ -191,6 +191,15 @@ window.logout = () ->
   $("#loading").show()
   
   chrome.tabs.onUpdated.addListener onFacebookLogin
+
+window.update_status_window = ()->
+  console.log "update status window"
+  
+  $("#dialog_status").dialog
+    autoOpen: true
+    width: 400
+    title: "Update Status"
+    modal: true
   
 exports = this
 exports.feedHolder = feedHolder

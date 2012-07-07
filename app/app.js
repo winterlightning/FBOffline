@@ -284,6 +284,16 @@
     return chrome.tabs.onUpdated.addListener(onFacebookLogin);
   };
 
+  window.update_status_window = function() {
+    console.log("update status window");
+    return $("#dialog_status").dialog({
+      autoOpen: true,
+      width: 400,
+      title: "Update Status",
+      modal: true
+    });
+  };
+
   exports = this;
 
   exports.feedHolder = feedHolder;
