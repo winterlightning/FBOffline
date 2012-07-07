@@ -80,7 +80,7 @@
             text: "Save",
             "class": "btn btn-primary",
             click: function() {
-              if (_this.item.content === JSON.stringify($(".chzn-select").val())) {
+              if (_this.item.content !== JSON.stringify($(".chzn-select").val())) {
                 _this.item.content = JSON.stringify($(".chzn-select").val());
                 _this.item.name = $("#column_name").val();
                 _this.item.save();

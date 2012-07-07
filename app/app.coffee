@@ -56,7 +56,7 @@ class feedHolder extends Spine.Controller
         class: "btn btn-primary"
         click: =>
           #check if the list of people is different, if it is, pull from cloud again
-          if @item.content is JSON.stringify( $(".chzn-select").val() )
+          if @item.content isnt JSON.stringify( $(".chzn-select").val() )
             @item.content = JSON.stringify( $(".chzn-select").val() )
             @item.name = $("#column_name").val()
             @item.save()
