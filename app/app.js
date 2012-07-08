@@ -316,6 +316,9 @@
       width: 400,
       title: "Update Status",
       modal: true,
+      open: function() {
+        return $("#dialog_status_textarea").val("");
+      },
       buttons: [
         {
           text: "Update",
@@ -335,6 +338,20 @@
         }
       ]
     });
+  };
+
+  window.auto_pull = function() {
+    var t, talk_feed, _i, _len, _results;
+    window.refresh_feed();
+    talk_feed = Feed.findAllByAttribute("unread", true).sort(Feed.ordersort);
+    console.log("talk_feed", talk_feed);
+    _results = [];
+    for (_i = 0, _len = talk_feed.length; _i < _len; _i++) {
+      t = talk_feed[_i];
+      window.speak_feed(t);
+      _results.push(t.unread = false);
+    }
+    return _results;
   };
 
   exports = this;

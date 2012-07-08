@@ -1,6 +1,6 @@
 #models
 class Feed extends Spine.Model
-  @configure "Feed", "id", "from&id", "from&name", "to&id", "to&name", "message", "type", "updated_time", "picture", "link", "story", "name", "tag"
+  @configure "Feed", "id", "from&id", "from&name", "to&id", "to&name", "message", "type", "updated_time", "picture", "link", "story", "name", "tag", "unread"
   @extend Spine.Model.Local
   
 class FeedList extends Spine.Model

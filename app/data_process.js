@@ -37,6 +37,7 @@
       if (tag != null) {
         data["tag"] = tag;
       }
+      data["unread"] = true;
       if (Feed.findByAttribute("id", x["id"]) != null) {
         console.log("this feed is already there");
       } else {
@@ -145,6 +146,32 @@
     }
   };
 
+  window.speak_feed = function(f) {
+    var speak;
+    if (f.type === "status") {
+      if (f.message != null) {
+        speak = f.message;
+      }
+      if (f.story != null) {
+        speak = f.story;
+      }
+      if (f.name != null) {
+        speak = name;
+      }
+      if (f["to&name"] != null) {
+        chrome.tts.speak(f["from&name"] + " said to " + f["to&name"] + " " + speak + ".", {
+          'enqueue': true
+        });
+        return console.log("SPEAKING:", f["from&name"] + " said to " + f["to&name"] + " " + speak + ".");
+      } else {
+        chrome.tts.speak(f["from&name"] + " said " + speak + ".", {
+          'enqueue': true
+        });
+        return console.log("SPEAKING:", f["from&name"] + " said " + speak + ".");
+      }
+    }
+  };
+
   window.speak_all = function(feed_list) {
     var f, speak, _i, _len, _ref, _results;
     chrome.tts.speak("starting");
@@ -162,17 +189,7 @@
         if (f.name != null) {
           speak = name;
         }
-        if (f["to&name"] != null) {
-          chrome.tts.speak(f["from&name"] + " said to " + f["to&name"] + " " + speak + ".", {
-            'enqueue': true
-          });
-          _results.push(console.log("SPEAKING:", f["from&name"] + " said to " + f["to&name"] + " " + speak + "."));
-        } else {
-          chrome.tts.speak(f["from&name"] + " said " + speak + ".", {
-            'enqueue': true
-          });
-          _results.push(console.log("SPEAKING:", f["from&name"] + " said " + speak + "."));
-        }
+        _results.push(window.speak_feed(f));
       } else {
         _results.push(void 0);
       }

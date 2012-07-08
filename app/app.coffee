@@ -6,7 +6,6 @@ Image.fetch()
 Friends.fetch()
 Me.fetch()
 
-
 Feed.ordersort = (a, b) ->
   (if (a.updated_time > b.updated_time) then -1 else 1)
 
@@ -226,6 +225,8 @@ window.update_status_window = ()->
     width: 400
     title: "Update Status"
     modal: true
+    open: ()->
+      $("#dialog_status_textarea").val("")
     buttons: [ 
         text: "Update"
         class: "btn btn-primary"
@@ -239,6 +240,17 @@ window.update_status_window = ()->
         click: ->
           $(this).dialog "close"  
       ]  
+
+window.auto_pull = () ->
+  window.refresh_feed()
+  
+  talk_feed = Feed.findAllByAttribute("unread", true).sort(Feed.ordersort)
+  
+  console.log("talk_feed", talk_feed)
+  
+  for t in talk_feed
+    window.speak_feed( t )
+    t.unread = false  
   
 exports = this
 exports.feedHolder = feedHolder
