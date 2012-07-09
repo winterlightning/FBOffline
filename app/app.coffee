@@ -254,9 +254,7 @@ window.auto_pull = () ->
 
   for x in FeedList.findAllByAttribute("watched", true)
     switch feed_list.type
-      when "friends" then 
-        for friends in x
-        
+      when "friends" then window.get_friend_list(feed_list)
       when "newstream" then window.fb_call( fb_match.newsfeed, suck_down_feed, "stream" )
       when "wall" then window.fb_call( fb_match.wall, suck_down_feed, "wall" )
       when "messages" then console.log("messages")

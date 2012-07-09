@@ -36,6 +36,8 @@ window.suck_down_feed = (json, tag)->
     a = FeedList.findByAttribute("tag", tag)
     a.save()
 
+  window.all_pulled.ok() if window.all_pulled?
+
 window.suck_down_friends = (json) ->
 
   for x in json.data
@@ -63,16 +65,20 @@ window.suck_down_me = (data) ->
     a.save()
 
 window.get_stream = ()->
+  window.all_pulled.wait() if window.all_pulled?
   window.fb_call( fb_match.newsfeed, suck_down_feed, "stream" )
   
 window.get_wall = ()->
+  window.all_pulled.wait() if window.all_pulled?
   window.fb_call( fb_match.wall, suck_down_feed, "wall" )
   
 window.get_friends = () ->
+  window.all_pulled.wait() if window.all_pulled?
   window.fb_call( fb_match.friends, suck_down_friends)
 
 window.get_me = () ->
   console.log("get me called")
+  window.all_pulled.wait() if window.all_pulled?
   window.fb_call( fb_match.me, suck_down_me)
 
 window.get_friend_list = (feed_list) ->
@@ -86,6 +92,7 @@ window.get_friend_list = (feed_list) ->
       a = url: url
       
       console.log("calling", url)
+      window.all_pulled.wait() if window.all_pulled?
       window.fb_call( a, suck_down_feed, feed_list.tag )  
 
 window.refresh_column = ( feed_list ) ->

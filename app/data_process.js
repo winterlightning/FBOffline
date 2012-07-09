@@ -46,7 +46,10 @@
     }
     if (FeedList.findByAttribute("tag", tag)) {
       a = FeedList.findByAttribute("tag", tag);
-      return a.save();
+      a.save();
+    }
+    if (window.all_pulled != null) {
+      return window.all_pulled.ok();
     }
   };
 
@@ -94,19 +97,31 @@
   };
 
   window.get_stream = function() {
+    if (window.all_pulled != null) {
+      window.all_pulled.wait();
+    }
     return window.fb_call(fb_match.newsfeed, suck_down_feed, "stream");
   };
 
   window.get_wall = function() {
+    if (window.all_pulled != null) {
+      window.all_pulled.wait();
+    }
     return window.fb_call(fb_match.wall, suck_down_feed, "wall");
   };
 
   window.get_friends = function() {
+    if (window.all_pulled != null) {
+      window.all_pulled.wait();
+    }
     return window.fb_call(fb_match.friends, suck_down_friends);
   };
 
   window.get_me = function() {
     console.log("get me called");
+    if (window.all_pulled != null) {
+      window.all_pulled.wait();
+    }
     return window.fb_call(fb_match.me, suck_down_me);
   };
 
@@ -124,6 +139,9 @@
           url: url
         };
         console.log("calling", url);
+        if (window.all_pulled != null) {
+          window.all_pulled.wait();
+        }
         _results.push(window.fb_call(a, suck_down_feed, feed_list.tag));
       }
     }

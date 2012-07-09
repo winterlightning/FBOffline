@@ -354,7 +354,7 @@
       }
       return _results;
     });
-    _ref = FeedList.findAllByAttribute("", true);
+    _ref = FeedList.findAllByAttribute("watched", true);
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       x = _ref[_i];
