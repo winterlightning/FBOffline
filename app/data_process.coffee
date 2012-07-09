@@ -101,17 +101,17 @@ window.refresh_column = ( feed_list ) ->
 
 window.speak_feed = (f) ->
 
-    if f.type is "status"
-      speak = f.message if f.message?
-      speak = f.story if f.story?
-      speak = name if f.name?
+  if f.type is "status"
+    speak = f.message if f.message?
+    speak = f.story if f.story?
+    speak = name if f.name?
 
-      if f["to&name"]?
-        chrome.tts.speak(f["from&name"] + " said to " + f["to&name"] + " " + speak + ".", {'enqueue': true} ) 
-        console.log("SPEAKING:", f["from&name"] + " said to " + f["to&name"] + " " + speak + ".")
-      else
-        chrome.tts.speak(f["from&name"] + " said " + speak + ".", {'enqueue': true} ) 
-        console.log("SPEAKING:", f["from&name"] + " said " + speak + ".")
+    if f["to&name"]?
+      chrome.tts.speak(f["from&name"] + " said to " + f["to&name"] + " " + speak + ".", {'enqueue': true} ) 
+      console.log("SPEAKING:", f["from&name"] + " said to " + f["to&name"] + " " + speak + ".")
+    else
+      chrome.tts.speak(f["from&name"] + " said " + speak + ".", {'enqueue': true} ) 
+      console.log("SPEAKING:", f["from&name"] + " said " + speak + ".")
 
 #speaking stuff
 window.speak_all = ( feed_list )->
@@ -123,3 +123,4 @@ window.speak_all = ( feed_list )->
       speak = name if f.name?
       
       window.speak_feed(f)
+

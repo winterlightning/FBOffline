@@ -341,15 +341,39 @@
   };
 
   window.auto_pull = function() {
-    var t, talk_feed, _i, _len, _results;
-    window.refresh_feed();
-    talk_feed = Feed.findAllByAttribute("unread", true).sort(Feed.ordersort);
-    console.log("talk_feed", talk_feed);
+    var x, _i, _len, _ref, _results;
+    window.all_pulled = new DelayedOp(function() {
+      var t, talk_feed, _i, _len, _results;
+      talk_feed = Feed.findAllByAttribute("unread", true).sort(Feed.ordersort);
+      console.log("talk_feed", talk_feed);
+      _results = [];
+      for (_i = 0, _len = talk_feed.length; _i < _len; _i++) {
+        t = talk_feed[_i];
+        window.speak_feed(t);
+        _results.push(t.unread = false);
+      }
+      return _results;
+    });
+    _ref = FeedList.findAllByAttribute("", true);
     _results = [];
-    for (_i = 0, _len = talk_feed.length; _i < _len; _i++) {
-      t = talk_feed[_i];
-      window.speak_feed(t);
-      _results.push(t.unread = false);
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      x = _ref[_i];
+      switch (feed_list.type) {
+        case "friends":
+          _results.push(window.get_friend_list(feed_list));
+          break;
+        case "newstream":
+          _results.push(window.fb_call(fb_match.newsfeed, suck_down_feed, "stream"));
+          break;
+        case "wall":
+          _results.push(window.fb_call(fb_match.wall, suck_down_feed, "wall"));
+          break;
+        case "messages":
+          _results.push(console.log("messages"));
+          break;
+        default:
+          _results.push(console.log("feed_list is not suppose to be this type", feed_list.type));
+      }
     }
     return _results;
   };
