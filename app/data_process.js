@@ -167,15 +167,15 @@
 
   window.speak_feed = function(f) {
     var speak;
-    if (f.type === "status") {
+    if (f.type === "status" || f.type === "video") {
+      if (f.name != null) {
+        speak = name;
+      }
       if (f.message != null) {
         speak = f.message;
       }
       if (f.story != null) {
         speak = f.story;
-      }
-      if (f.name != null) {
-        speak = name;
       }
       if (f["to&name"] != null) {
         chrome.tts.speak(f["from&name"] + " said to " + f["to&name"] + " " + speak + ".", {
