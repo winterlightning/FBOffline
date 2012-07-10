@@ -127,7 +127,10 @@ window.speak_feed = (f) ->
   else if f.type is "link"
     speak = f.name if f.name?
     
-    if f["to&name"]?
+    if f.story?      
+      chrome.tts.speak(f.story + " "+f.name, {'enqueue': true} ) 
+      console.log(f.story + " "+f.name)
+    else if f["to&name"]?
       chrome.tts.speak(f["from&name"] + " posted a link to " + f["to&name"] + " " + speak + ".", {'enqueue': true} ) 
       console.log(f["from&name"] + " posted a link to " + f["to&name"] + " " + speak + ".")
     else

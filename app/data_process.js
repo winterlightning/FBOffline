@@ -192,7 +192,12 @@
       if (f.name != null) {
         speak = f.name;
       }
-      if (f["to&name"] != null) {
+      if (f.story != null) {
+        chrome.tts.speak(f.story + " " + f.name, {
+          'enqueue': true
+        });
+        return console.log(f.story + " " + f.name);
+      } else if (f["to&name"] != null) {
         chrome.tts.speak(f["from&name"] + " posted a link to " + f["to&name"] + " " + speak + ".", {
           'enqueue': true
         });
