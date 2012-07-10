@@ -21,13 +21,13 @@ window.suck_down_feed = (json, tag)->
           two = one["data"][0]
           data[field] = two[field_b] if two[field_b]?
 
-    console.log(data)
+    #console.log(data)
     
     data["tag"] = tag if tag?
     data["unread"] = true
     
     if Feed.findByAttribute("id", x["id"])?
-      console.log("this feed is already there")
+      console.log(".")
     else
       Feed.create(data)
       

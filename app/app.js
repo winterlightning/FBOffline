@@ -232,11 +232,11 @@
   });
 
   window.initialize_autosync = function() {
-    console.log("autosync called");
+    console.log("###autosync called");
     if (localStorage.accessToken) {
       window.auto_pull();
     }
-    return setTimeout("window.initialize_autosync()", 60000);
+    return setTimeout("window.initialize_autosync()", window.REFRESH_TIME * 60000);
   };
 
   window.fb_selector = function() {

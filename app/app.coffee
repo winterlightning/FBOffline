@@ -161,14 +161,14 @@ $ ->
   $('#columns').width( FeedList.all().length * 344 + 20 ) #on feedlist create, this should be enlarged
   
   window.initialize_autosync()
-    
+  
 window.initialize_autosync = ()->
-  console.log("autosync called")
+  console.log("###autosync called")
 
   if localStorage.accessToken
     window.auto_pull()
   
-  setTimeout("window.initialize_autosync()", 60000)
+  setTimeout("window.initialize_autosync()", window.REFRESH_TIME * 60000)
 
 window.fb_selector = ()->
   $(".chzn-select").val("")

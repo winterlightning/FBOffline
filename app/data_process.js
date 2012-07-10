@@ -33,13 +33,12 @@
           }
         }
       }
-      console.log(data);
       if (tag != null) {
         data["tag"] = tag;
       }
       data["unread"] = true;
       if (Feed.findByAttribute("id", x["id"]) != null) {
-        console.log("this feed is already there");
+        console.log(".");
       } else {
         Feed.create(data);
       }
