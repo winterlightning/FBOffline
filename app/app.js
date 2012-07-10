@@ -23,6 +23,8 @@
     }
   };
 
+  window.REFRESH_TIME = 5;
+
   feedHolder = (function(_super) {
 
     __extends(feedHolder, _super);
@@ -225,8 +227,17 @@
     }
     $(".chzn-select").chosen();
     $('#pane-target').width($(window).width());
-    return $('#columns').width(FeedList.all().length * 344 + 20);
+    $('#columns').width(FeedList.all().length * 344 + 20);
+    return window.initialize_autosync();
   });
+
+  window.initialize_autosync = function() {
+    console.log("autosync called");
+    if (localStorage.accessToken) {
+      window.auto_pull();
+    }
+    return setTimeout("window.initialize_autosync()", 60000);
+  };
 
   window.fb_selector = function() {
     $(".chzn-select").val("");

@@ -22,9 +22,14 @@ class Me extends Spine.Model
   @configure "Me", "name", "id"
   @extend Spine.Model.Local
 
+class Settings extends Spine.Model
+  @configure "name", "value", ""
+  @extend Spine.Model.Local
+
 exports = this
 this.Feed = Feed
 this.FeedList = FeedList
 this.Image = Image
 this.Friends = Friends
 this.Me = Me
+this.Setting = Settings

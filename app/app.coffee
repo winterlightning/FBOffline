@@ -9,6 +9,8 @@ Me.fetch()
 Feed.ordersort = (a, b) ->
   (if (a.updated_time > b.updated_time) then -1 else 1)
 
+window.REFRESH_TIME = 5 #minutes
+
 #aggregate feed holder
 class feedHolder extends Spine.Controller
   tag: "div.column"
@@ -157,7 +159,17 @@ $ ->
   
   $('#pane-target').width( $(window).width() )
   $('#columns').width( FeedList.all().length * 344 + 20 ) #on feedlist create, this should be enlarged
+  
+  window.initialize_autosync()
     
+window.initialize_autosync = ()->
+  console.log("autosync called")
+
+  if localStorage.accessToken
+    window.auto_pull()
+  
+  setTimeout("window.initialize_autosync()", 60000)
+
 window.fb_selector = ()->
   $(".chzn-select").val("")
   
