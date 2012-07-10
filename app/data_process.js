@@ -188,30 +188,43 @@
         });
         return console.log("SPEAKING:", f["from&name"] + " said " + speak + ".");
       }
+    } else if (f.type === "link") {
+      if (f.name != null) {
+        speak = f.name;
+      }
+      if (f["to&name"] != null) {
+        chrome.tts.speak(f["from&name"] + " posted a link to " + f["to&name"] + " " + speak + ".", {
+          'enqueue': true
+        });
+        return console.log(f["from&name"] + " posted a link to " + f["to&name"] + " " + speak + ".");
+      } else {
+        chrome.tts.speak(f["from&name"] + " posted a link: " + speak + ".", {
+          'enqueue': true
+        });
+        return console.log("SPEAKING:", f["from&name"] + " said " + speak + ".");
+      }
     }
   };
 
   window.speak_all = function(feed_list) {
-    var f, speak, _i, _len, _ref, _results;
+    var f, _i, _len, _ref, _results;
     chrome.tts.speak("starting");
     _ref = Feed.findAllByAttribute("tag", feed_list.tag).sort(Feed.ordersort);
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       f = _ref[_i];
-      if (f.type === "status") {
-        if (f.message != null) {
-          speak = f.message;
-        }
-        if (f.story != null) {
-          speak = f.story;
-        }
-        if (f.name != null) {
-          speak = name;
-        }
-        _results.push(window.speak_feed(f));
-      } else {
-        _results.push(void 0);
-      }
+      _results.push(window.speak_feed(f));
+    }
+    return _results;
+  };
+
+  window.speak_all_feeds = function(feeds) {
+    var f, _i, _len, _results;
+    chrome.tts.speak("starting");
+    _results = [];
+    for (_i = 0, _len = feeds.length; _i < _len; _i++) {
+      f = feeds[_i];
+      _results.push(window.speak_feed(f));
     }
     return _results;
   };

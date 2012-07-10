@@ -123,15 +123,24 @@ window.speak_feed = (f) ->
     else
       chrome.tts.speak(f["from&name"] + " said " + speak + ".", {'enqueue': true} ) 
       console.log("SPEAKING:", f["from&name"] + " said " + speak + ".")
+      
+  else if f.type is "link"
+    speak = f.name if f.name?
+    
+    if f["to&name"]?
+      chrome.tts.speak(f["from&name"] + " posted a link to " + f["to&name"] + " " + speak + ".", {'enqueue': true} ) 
+      console.log(f["from&name"] + " posted a link to " + f["to&name"] + " " + speak + ".")
+    else
+      chrome.tts.speak(f["from&name"] + " posted a link: " + speak + ".", {'enqueue': true} ) 
+      console.log("SPEAKING:", f["from&name"] + " said " + speak + ".")
 
 #speaking stuff
 window.speak_all = ( feed_list )->
   chrome.tts.speak("starting") 
   for f in Feed.findAllByAttribute("tag", feed_list.tag).sort(Feed.ordersort)
-    if f.type is "status"
-      speak = f.message if f.message?
-      speak = f.story if f.story?
-      speak = name if f.name?
-      
-      window.speak_feed(f)
+    window.speak_feed(f)
 
+window.speak_all_feeds = ( feeds )->
+  chrome.tts.speak("starting") 
+  for f in feeds
+    window.speak_feed(f)
