@@ -65,6 +65,7 @@ window.suck_down_me = (data) ->
     a.save()
 
 window.get_stream = ()->
+  console.log("all pulled", window.all_pulled)
   window.all_pulled.wait() if window.all_pulled?
   window.fb_call( fb_match.newsfeed, suck_down_feed, "stream" )
   
@@ -82,6 +83,9 @@ window.get_me = () ->
   window.fb_call( fb_match.me, suck_down_me)
 
 window.get_friend_list = (feed_list) ->
+
+  console.log("all pulled", window.all_pulled)
+
   list = JSON.parse( feed_list.content )
 
   for id in list

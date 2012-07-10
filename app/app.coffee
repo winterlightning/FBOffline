@@ -244,26 +244,25 @@ window.update_status_window = ()->
 window.auto_pull = () ->
   
   window.all_pulled = new DelayedOp -> 
-    alert("auto pull final called")
-  
+    console.log("callback called")
+    
     talk_feed = Feed.findAllByAttribute("unread", true).sort(Feed.ordersort)
     window.talk_feed = talk_feed
     console.log("talk_feed", talk_feed)
     
-    for t in talk_feed
-      window.speak_feed( t )
-      t.unread = false  
-
+    if talk_feed? and talk_feed.length > 0
+      chrome.tts.speak("New updates") 
+      for t in talk_feed
+        window.speak_feed( t )
+        t.unread = false  
+        t.save()
+    
     window.all_pulled = null
 
   for x in FeedList.findAllByAttribute("watched", true)
-    switch x.type
-      when "friends" then window.get_friend_list(feed_list)
-      when "newstream" then window.fb_call( fb_match.newsfeed, suck_down_feed, "stream" )
-      when "wall" then window.fb_call( fb_match.wall, suck_down_feed, "wall" )
-      when "messages" then console.log("messages")
-      else console.log("feed_list is not suppose to be this type", feed_list.type)
+    window.refresh_column(x)
 
+  console.log("ALMOST READY")
   window.all_pulled.ready()
   
 exports = this

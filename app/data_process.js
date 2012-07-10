@@ -97,6 +97,7 @@
   };
 
   window.get_stream = function() {
+    console.log("all pulled", window.all_pulled);
     if (window.all_pulled != null) {
       window.all_pulled.wait();
     }
@@ -127,6 +128,7 @@
 
   window.get_friend_list = function(feed_list) {
     var a, id, list, url, _i, _len, _results;
+    console.log("all pulled", window.all_pulled);
     list = JSON.parse(feed_list.content);
     _results = [];
     for (_i = 0, _len = list.length; _i < _len; _i++) {

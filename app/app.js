@@ -344,37 +344,27 @@
     var x, _i, _len, _ref;
     window.all_pulled = new DelayedOp(function() {
       var t, talk_feed, _i, _len;
-      alert("auto pull final called");
+      console.log("callback called");
       talk_feed = Feed.findAllByAttribute("unread", true).sort(Feed.ordersort);
       window.talk_feed = talk_feed;
       console.log("talk_feed", talk_feed);
-      for (_i = 0, _len = talk_feed.length; _i < _len; _i++) {
-        t = talk_feed[_i];
-        window.speak_feed(t);
-        t.unread = false;
+      if ((talk_feed != null) && talk_feed.length > 0) {
+        chrome.tts.speak("New updates");
+        for (_i = 0, _len = talk_feed.length; _i < _len; _i++) {
+          t = talk_feed[_i];
+          window.speak_feed(t);
+          t.unread = false;
+          t.save();
+        }
       }
       return window.all_pulled = null;
     });
     _ref = FeedList.findAllByAttribute("watched", true);
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       x = _ref[_i];
-      switch (x.type) {
-        case "friends":
-          window.get_friend_list(feed_list);
-          break;
-        case "newstream":
-          window.fb_call(fb_match.newsfeed, suck_down_feed, "stream");
-          break;
-        case "wall":
-          window.fb_call(fb_match.wall, suck_down_feed, "wall");
-          break;
-        case "messages":
-          console.log("messages");
-          break;
-        default:
-          console.log("feed_list is not suppose to be this type", feed_list.type);
-      }
+      window.refresh_column(x);
     }
+    console.log("ALMOST READY");
     return window.all_pulled.ready();
   };
 
