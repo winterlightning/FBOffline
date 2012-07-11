@@ -211,14 +211,12 @@
     } else if (f.type === "photo") {
       if (f.message != null) {
         speak = f.message;
-        if (f["to&name"] != null) {
-          chrome.tts.speak(f["from&name"] + " posted a photo with the message: " + speak + ".", {
-            'enqueue': true
-          });
-          return console.log(f["from&name"] + " posted a photo with the message: " + speak + ".", {
-            'enqueue': true
-          });
-        }
+        chrome.tts.speak(f["from&name"] + " posted a photo with the message: " + speak + ".", {
+          'enqueue': true
+        });
+        return console.log(f["from&name"] + " posted a photo with the message: " + speak + ".", {
+          'enqueue': true
+        });
       } else if (f.story != null) {
         speak = f.story;
         chrome.tts.speak(speak, {
