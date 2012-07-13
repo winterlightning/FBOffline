@@ -166,7 +166,7 @@
   };
 
   window.speak_feed = function(f) {
-    var speak;
+    var speak, type;
     if (f.type === "status" || f.type === "video") {
       if (f.name != null) {
         speak = name;
@@ -208,13 +208,19 @@
         });
         return console.log("SPEAKING:", f["from&name"] + " said " + speak + ".");
       }
-    } else if (f.type === "photo") {
+    } else if (f.type === "photo" || f.type === "swf") {
+      if (f.type === "swf") {
+        type = "flash";
+      }
+      if (f.type === "photo") {
+        type = "photo";
+      }
       if (f.message != null) {
         speak = f.message;
-        chrome.tts.speak(f["from&name"] + " posted a photo with the message: " + speak + ".", {
+        chrome.tts.speak(f["from&name"] + (" posted a " + type + " with the message: ") + speak + ".", {
           'enqueue': true
         });
-        return console.log(f["from&name"] + " posted a photo with the message: " + speak + ".", {
+        return console.log(f["from&name"] + (" posted a " + type + " with the message: ") + speak + ".", {
           'enqueue': true
         });
       } else if (f.story != null) {

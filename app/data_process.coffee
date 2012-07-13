@@ -137,13 +137,16 @@ window.speak_feed = (f) ->
       chrome.tts.speak(f["from&name"] + " posted a link: " + speak + ".", {'enqueue': true} ) 
       console.log("SPEAKING:", f["from&name"] + " said " + speak + ".")
   
-  else if f.type is "photo"
+  else if f.type is "photo" or f.type is "swf"
+    
+    type = "flash" if f.type is "swf"
+    type = "photo" if f.type is "photo"
       
     if f.message?
       speak = f.message 
     
-      chrome.tts.speak(f["from&name"] + " posted a photo with the message: " + speak + ".", {'enqueue': true} ) 
-      console.log(f["from&name"] + " posted a photo with the message: " + speak + ".", {'enqueue': true}) 
+      chrome.tts.speak(f["from&name"] + " posted a #{type} with the message: " + speak + ".", {'enqueue': true} ) 
+      console.log(f["from&name"] + " posted a #{type} with the message: " + speak + ".", {'enqueue': true}) 
     
     else if f.story?
       speak = f.story
