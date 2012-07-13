@@ -114,6 +114,6 @@
 
   this.Me = Me;
 
-  this.Setting = Settings;
+  this.Settings = Settings;
 
 }).call(this);

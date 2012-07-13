@@ -287,6 +287,21 @@
           text: "Save",
           "class": "btn btn-primary",
           click: function() {
+            var auto_update;
+            auto_update = $("#one").val() === "on";
+            if (Settings.exists("auto-update")) {
+              Settings.init({
+                id: "auto-update",
+                name: "auto-update",
+                value: auto_update
+              });
+            } else {
+              Settings.init({
+                id: "auto-update",
+                name: "auto-update",
+                value: auto_update
+              });
+            }
             return $(this).dialog("close");
           }
         }, {

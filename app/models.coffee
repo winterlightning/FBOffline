@@ -32,4 +32,4 @@ this.FeedList = FeedList
 this.Image = Image
 this.Friends = Friends
 this.Me = Me
-this.Setting = Settings
+this.Settings = Settings

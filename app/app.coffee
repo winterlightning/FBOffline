@@ -210,6 +210,13 @@ window.settings_window = () ->
         text: "Save"
         class: "btn btn-primary"
         click: ->
+          auto_update = $("#one").val() is "on"
+          
+          if Settings.exists("auto-update")
+            Settings.init( { id: "auto-update", name: "auto-update", value: auto_update } )
+          else
+            Settings.init( { id: "auto-update", name: "auto-update", value: auto_update } )
+          
           $(this).dialog "close"
       ,
         text: "Cancel"
