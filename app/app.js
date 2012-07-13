@@ -287,19 +287,29 @@
           text: "Save",
           "class": "btn btn-primary",
           click: function() {
-            var auto_update;
+            var a, auto_update, speaking_speed;
             auto_update = $("#one").val() === "on";
+            speaking_speed = $("#slider").slider("value");
             if (Settings.exists("auto-update")) {
-              Settings.init({
+              a = Settings.find("auto-update");
+              a.value = auto_update;
+              a.save();
+            } else {
+              Settings.create({
                 id: "auto-update",
                 name: "auto-update",
                 value: auto_update
               });
+            }
+            if (Settings.exists("speaking-speed")) {
+              a = Settings.find("speaking-speed");
+              a.value = speaking_speed;
+              a.save();
             } else {
-              Settings.init({
-                id: "auto-update",
-                name: "auto-update",
-                value: auto_update
+              Settings.create({
+                id: "speaking-speed",
+                name: "speaking-speed",
+                value: speaking_speed
               });
             }
             return $(this).dialog("close");

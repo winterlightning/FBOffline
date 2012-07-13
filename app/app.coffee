@@ -211,11 +211,21 @@ window.settings_window = () ->
         class: "btn btn-primary"
         click: ->
           auto_update = $("#one").val() is "on"
+          speaking_speed = $( "#slider" ).slider( "value" )
           
           if Settings.exists("auto-update")
-            Settings.init( { id: "auto-update", name: "auto-update", value: auto_update } )
+            a = Settings.find("auto-update")
+            a.value = auto_update 
+            a.save()
           else
-            Settings.init( { id: "auto-update", name: "auto-update", value: auto_update } )
+            Settings.create( { id: "auto-update", name: "auto-update", value: auto_update } )          
+          
+          if Settings.exists("speaking-speed")
+            a = Settings.find("speaking-speed")
+            a.value = speaking_speed
+            a.save()
+          else
+            Settings.create( { id: "speaking-speed", name: "speaking-speed", value: speaking_speed } ) 
           
           $(this).dialog "close"
       ,
