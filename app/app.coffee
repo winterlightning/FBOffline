@@ -162,6 +162,8 @@ $ ->
   
   window.initialize_autosync()
   
+  $("#slider").slider({ max: 5, min: 1, value: 2 });
+  
 window.initialize_autosync = ()->
   console.log("###autosync called")
 
@@ -197,6 +199,24 @@ window.fb_selector = ()->
           $(this).dialog "close"  
       ]      
   #$(".chozenSelect").val();
+
+window.settings_window = () ->
+  $("#dialog_settings").dialog
+    autoOpen: true
+    width: 400
+    title: "Settings"
+    modal: true
+    buttons: [ 
+        text: "Save"
+        class: "btn btn-primary"
+        click: ->
+          $(this).dialog "close"
+      ,
+        text: "Cancel"
+        class: "btn"
+        click: ->
+          $(this).dialog "close"  
+      ]          
 
 window.add_column = ()->
   console.log("called add column")

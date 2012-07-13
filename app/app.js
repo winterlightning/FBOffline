@@ -228,7 +228,12 @@
     $(".chzn-select").chosen();
     $('#pane-target').width($(window).width());
     $('#columns').width(FeedList.all().length * 344 + 20);
-    return window.initialize_autosync();
+    window.initialize_autosync();
+    return $("#slider").slider({
+      max: 5,
+      min: 1,
+      value: 2
+    });
   });
 
   window.initialize_autosync = function() {
@@ -259,6 +264,30 @@
           click: function() {
             window.add_column();
             return $("#dialog").dialog("close");
+          }
+        }, {
+          text: "Cancel",
+          "class": "btn",
+          click: function() {
+            return $(this).dialog("close");
+          }
+        }
+      ]
+    });
+  };
+
+  window.settings_window = function() {
+    return $("#dialog_settings").dialog({
+      autoOpen: true,
+      width: 400,
+      title: "Settings",
+      modal: true,
+      buttons: [
+        {
+          text: "Save",
+          "class": "btn btn-primary",
+          click: function() {
+            return $(this).dialog("close");
           }
         }, {
           text: "Cancel",
