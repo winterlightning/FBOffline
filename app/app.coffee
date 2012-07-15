@@ -5,6 +5,7 @@ FeedList.fetch()
 Image.fetch()
 Friends.fetch()
 Me.fetch()
+Settings.fetch()
 
 Feed.ordersort = (a, b) ->
   (if (a.updated_time > b.updated_time) then -1 else 1)
@@ -206,11 +207,18 @@ window.settings_window = () ->
     width: 400
     title: "Settings"
     modal: true
+    open: ->
+      a = Settings.find("auto-update")
+      b = Settings.find("speaking-speed")
+      
+      $('#one').attr('checked', a.value)
+      $( "#slider" ).slider({ value: b.value })
+      
     buttons: [ 
         text: "Save"
         class: "btn btn-primary"
         click: ->
-          auto_update = $("#one").val() is "on"
+          auto_update = $('#one').is(':checked')
           speaking_speed = $( "#slider" ).slider( "value" )
           
           if Settings.exists("auto-update")

@@ -15,6 +15,8 @@
 
   Me.fetch();
 
+  Settings.fetch();
+
   Feed.ordersort = function(a, b) {
     if (a.updated_time > b.updated_time) {
       return -1;
@@ -282,13 +284,22 @@
       width: 400,
       title: "Settings",
       modal: true,
+      open: function() {
+        var a, b;
+        a = Settings.find("auto-update");
+        b = Settings.find("speaking-speed");
+        $('#one').attr('checked', a.value);
+        return $("#slider").slider({
+          value: b.value
+        });
+      },
       buttons: [
         {
           text: "Save",
           "class": "btn btn-primary",
           click: function() {
             var a, auto_update, speaking_speed;
-            auto_update = $("#one").val() === "on";
+            auto_update = $('#one').is(':checked');
             speaking_speed = $("#slider").slider("value");
             if (Settings.exists("auto-update")) {
               a = Settings.find("auto-update");
