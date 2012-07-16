@@ -153,6 +153,10 @@ $ ->
     window.list_holder.addone(a)
     window.list_holder.addone(b)
   
+  if Settings.all().length is 0  
+    Settings.create( { id: "auto-update", name: "auto-update", value: true } )
+    Settings.create( { id: "speaking-speed", name: "speaking-speed", value: 1 } )          
+  
   for x in Friends.all()
     $("#friendpicker").append("<option value='#{x.id}'>#{x.name}</option>")
   
@@ -165,11 +169,13 @@ $ ->
   
   $("#slider").slider({ max: 2.5, min: 0.5, step: 0.5, value: 1.0 });
   
+  #delete old entries
+  window.clean_data()
+  
 window.initialize_autosync = ()->
   console.log("###autosync called")
-  a = Settings.find("auto-update")
 
-  if localStorage.accessToken and a.value
+  if localStorage.accessToken and Settings.exists("auto-update") and Settings.find("auto-update").value
     window.auto_pull()
   
   setTimeout("window.initialize_autosync()", window.REFRESH_TIME * 60000)
@@ -209,11 +215,12 @@ window.settings_window = () ->
     title: "Settings"
     modal: true
     open: ->
-      a = Settings.find("auto-update")
-      b = Settings.find("speaking-speed")
-      
-      $('#one').attr('checked', a.value)
-      $( "#slider" ).slider({ value: b.value })
+      if Settings.exists("auto-update")
+        a = Settings.find("auto-update")
+        b = Settings.find("speaking-speed")
+        
+        $('#one').attr('checked', a.value)
+        $( "#slider" ).slider({ value: b.value })
       
     buttons: [ 
         text: "Save"

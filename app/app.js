@@ -222,6 +222,18 @@
       window.list_holder.addone(a);
       window.list_holder.addone(b);
     }
+    if (Settings.all().length === 0) {
+      Settings.create({
+        id: "auto-update",
+        name: "auto-update",
+        value: true
+      });
+      Settings.create({
+        id: "speaking-speed",
+        name: "speaking-speed",
+        value: 1
+      });
+    }
     _ref = Friends.all();
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       x = _ref[_i];
@@ -231,19 +243,18 @@
     $('#pane-target').width($(window).width());
     $('#columns').width(FeedList.all().length * 344 + 20);
     window.initialize_autosync();
-    return $("#slider").slider({
+    $("#slider").slider({
       max: 2.5,
       min: 0.5,
       step: 0.5,
       value: 1.0
     });
+    return window.clean_data();
   });
 
   window.initialize_autosync = function() {
-    var a;
     console.log("###autosync called");
-    a = Settings.find("auto-update");
-    if (localStorage.accessToken && a.value) {
+    if (localStorage.accessToken && Settings.exists("auto-update") && Settings.find("auto-update").value) {
       window.auto_pull();
     }
     return setTimeout("window.initialize_autosync()", window.REFRESH_TIME * 60000);
@@ -289,12 +300,14 @@
       modal: true,
       open: function() {
         var a, b;
-        a = Settings.find("auto-update");
-        b = Settings.find("speaking-speed");
-        $('#one').attr('checked', a.value);
-        return $("#slider").slider({
-          value: b.value
-        });
+        if (Settings.exists("auto-update")) {
+          a = Settings.find("auto-update");
+          b = Settings.find("speaking-speed");
+          $('#one').attr('checked', a.value);
+          return $("#slider").slider({
+            value: b.value
+          });
+        }
       },
       buttons: [
         {

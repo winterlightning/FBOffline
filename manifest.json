@@ -1,6 +1,6 @@
 {
-  "name": "FB Talk",
-  "version": "1.2",
+  "name": "Viola (Desktop)",
+  "version": "1.3",
   "description": "This app allows people to have their newsfeed read out loud",
   "app": {
     "launch": {
@@ -11,12 +11,17 @@
     "16": "img/cloud_logo_16.png",
     "128": "img/128fbtalk.png"
     
-  },    	
+  },
+  "background": {
+    "page": "main.html"
+  },  
+      	
   "permissions": [
     "tabs",
     "*.facebook.com/*",
     "*.fbcdn.net/*",
     "unlimitedStorage",
-    "tts"
+    "tts",
+    "background"
   ]
 }
