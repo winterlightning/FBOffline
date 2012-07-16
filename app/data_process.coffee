@@ -111,6 +111,7 @@ window.refresh_column = ( feed_list ) ->
     else console.log("feed_list is not suppose to be this type", feed_list.type)
 
 window.speak_feed = (f) ->
+  rate = Settings.find("speaking-speed").value
 
   if f.type is "status" or f.type is "video"
     speak = name if f.name?
@@ -118,10 +119,10 @@ window.speak_feed = (f) ->
     speak = f.story if f.story?
 
     if f["to&name"]?
-      chrome.tts.speak(f["from&name"] + " said to " + f["to&name"] + " " + speak + ".", {'enqueue': true} ) 
+      chrome.tts.speak(f["from&name"] + " said to " + f["to&name"] + " " + speak + ".", {'enqueue': true, 'rate': rate } ) 
       console.log("SPEAKING:", f["from&name"] + " said to " + f["to&name"] + " " + speak + ".")
     else
-      chrome.tts.speak(f["from&name"] + " said " + speak + ".", {'enqueue': true} ) 
+      chrome.tts.speak(f["from&name"] + " said " + speak + ".", {'enqueue': true, 'rate': rate } ) 
       console.log("SPEAKING:", f["from&name"] + " said " + speak + ".")
       
   else if f.type is "link"
@@ -131,10 +132,10 @@ window.speak_feed = (f) ->
       chrome.tts.speak(f.story + " "+f.name, {'enqueue': true} ) 
       console.log(f.story + " "+f.name)
     else if f["to&name"]?
-      chrome.tts.speak(f["from&name"] + " posted a link to " + f["to&name"] + " " + speak + ".", {'enqueue': true} ) 
+      chrome.tts.speak(f["from&name"] + " posted a link to " + f["to&name"] + " " + speak + ".", {'enqueue': true, 'rate': rate } ) 
       console.log(f["from&name"] + " posted a link to " + f["to&name"] + " " + speak + ".")
     else
-      chrome.tts.speak(f["from&name"] + " posted a link: " + speak + ".", {'enqueue': true} ) 
+      chrome.tts.speak(f["from&name"] + " posted a link: " + speak + ".", {'enqueue': true, 'rate': rate } ) 
       console.log("SPEAKING:", f["from&name"] + " said " + speak + ".")
   
   else if f.type is "photo" or f.type is "swf"
@@ -145,12 +146,12 @@ window.speak_feed = (f) ->
     if f.message?
       speak = f.message 
     
-      chrome.tts.speak(f["from&name"] + " posted a #{type} with the message: " + speak + ".", {'enqueue': true} ) 
-      console.log(f["from&name"] + " posted a #{type} with the message: " + speak + ".", {'enqueue': true}) 
+      chrome.tts.speak(f["from&name"] + " posted a #{type} with the message: " + speak + ".", {'enqueue': true, 'rate': rate } ) 
+      console.log(f["from&name"] + " posted a #{type} with the message: " + speak + ".", {'enqueue': true, 'rate': rate }) 
     
     else if f.story?
       speak = f.story
-      chrome.tts.speak(speak, {'enqueue': true} ) 
+      chrome.tts.speak(speak, {'enqueue': true, 'rate': rate } ) 
       console.log(speak)
 
 #speaking stuff

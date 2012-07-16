@@ -166,7 +166,8 @@
   };
 
   window.speak_feed = function(f) {
-    var speak, type;
+    var rate, speak, type;
+    rate = Settings.find("speaking-speed").value;
     if (f.type === "status" || f.type === "video") {
       if (f.name != null) {
         speak = name;
@@ -179,12 +180,14 @@
       }
       if (f["to&name"] != null) {
         chrome.tts.speak(f["from&name"] + " said to " + f["to&name"] + " " + speak + ".", {
-          'enqueue': true
+          'enqueue': true,
+          'rate': rate
         });
         return console.log("SPEAKING:", f["from&name"] + " said to " + f["to&name"] + " " + speak + ".");
       } else {
         chrome.tts.speak(f["from&name"] + " said " + speak + ".", {
-          'enqueue': true
+          'enqueue': true,
+          'rate': rate
         });
         return console.log("SPEAKING:", f["from&name"] + " said " + speak + ".");
       }
@@ -199,12 +202,14 @@
         return console.log(f.story + " " + f.name);
       } else if (f["to&name"] != null) {
         chrome.tts.speak(f["from&name"] + " posted a link to " + f["to&name"] + " " + speak + ".", {
-          'enqueue': true
+          'enqueue': true,
+          'rate': rate
         });
         return console.log(f["from&name"] + " posted a link to " + f["to&name"] + " " + speak + ".");
       } else {
         chrome.tts.speak(f["from&name"] + " posted a link: " + speak + ".", {
-          'enqueue': true
+          'enqueue': true,
+          'rate': rate
         });
         return console.log("SPEAKING:", f["from&name"] + " said " + speak + ".");
       }
@@ -218,15 +223,18 @@
       if (f.message != null) {
         speak = f.message;
         chrome.tts.speak(f["from&name"] + (" posted a " + type + " with the message: ") + speak + ".", {
-          'enqueue': true
+          'enqueue': true,
+          'rate': rate
         });
         return console.log(f["from&name"] + (" posted a " + type + " with the message: ") + speak + ".", {
-          'enqueue': true
+          'enqueue': true,
+          'rate': rate
         });
       } else if (f.story != null) {
         speak = f.story;
         chrome.tts.speak(speak, {
-          'enqueue': true
+          'enqueue': true,
+          'rate': rate
         });
         return console.log(speak);
       }

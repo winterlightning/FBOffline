@@ -163,12 +163,13 @@ $ ->
   
   window.initialize_autosync()
   
-  $("#slider").slider({ max: 5, min: 1, value: 2 });
+  $("#slider").slider({ max: 2.5, min: 0.5, step: 0.5, value: 1.0 });
   
 window.initialize_autosync = ()->
   console.log("###autosync called")
+  a = Settings.find("auto-update")
 
-  if localStorage.accessToken
+  if localStorage.accessToken and a.value
     window.auto_pull()
   
   setTimeout("window.initialize_autosync()", window.REFRESH_TIME * 60000)

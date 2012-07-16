@@ -232,15 +232,18 @@
     $('#columns').width(FeedList.all().length * 344 + 20);
     window.initialize_autosync();
     return $("#slider").slider({
-      max: 5,
-      min: 1,
-      value: 2
+      max: 2.5,
+      min: 0.5,
+      step: 0.5,
+      value: 1.0
     });
   });
 
   window.initialize_autosync = function() {
+    var a;
     console.log("###autosync called");
-    if (localStorage.accessToken) {
+    a = Settings.find("auto-update");
+    if (localStorage.accessToken && a.value) {
       window.auto_pull();
     }
     return setTimeout("window.initialize_autosync()", window.REFRESH_TIME * 60000);
