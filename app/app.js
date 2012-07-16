@@ -447,6 +447,32 @@
     return window.all_pulled.ready();
   };
 
+  window.clean_data = function() {
+    var all_feeds, feed, list, _i, _len, _ref, _results;
+    _ref = FeedList.all();
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      list = _ref[_i];
+      all_feeds = Feed.findAllByAttribute("tag", list.tag).sort(Feed.ordersort);
+      if (all_feeds.length > 50) {
+        console.log("greater than 50");
+        _results.push((function() {
+          var _j, _len1, _ref1, _results1;
+          _ref1 = all_feeds.slice(49, all_feeds.length + 1 || 9e9);
+          _results1 = [];
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+            feed = _ref1[_j];
+            _results1.push(feed.destroy());
+          }
+          return _results1;
+        })());
+      } else {
+        _results.push(void 0);
+      }
+    }
+    return _results;
+  };
+
   exports = this;
 
   exports.feedHolder = feedHolder;

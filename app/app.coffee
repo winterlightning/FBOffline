@@ -323,5 +323,14 @@ window.auto_pull = () ->
   console.log("ALMOST READY")
   window.all_pulled.ready()
   
+window.clean_data = () ->
+  for list in FeedList.all()
+    #if the number of feeds in this column exceeds 50, delete the ones above 50
+    all_feeds = Feed.findAllByAttribute("tag", list.tag).sort(Feed.ordersort)
+    if all_feeds.length > 50
+      console.log("greater than 50")
+      for feed in all_feeds[49..all_feeds.length]
+        feed.destroy()
+    
 exports = this
 exports.feedHolder = feedHolder
