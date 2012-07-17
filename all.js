@@ -7,121 +7,6 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-  window.successURL = "https://www.facebook.com/connect/login_success.html";
-
-  window.onFacebookLogin = function() {
-    console.log("onFacebookLogin called");
-    if (!localStorage.accessToken) {
-      return chrome.tabs.getAllInWindow(null, function(tabs) {
-        var i, params, x;
-        i = 0;
-        while (i < tabs.length) {
-          if (tabs[i].url.indexOf(successURL) === 0) {
-            console.log("here", tabs[i]);
-            params = tabs[i].url.split("#")[1];
-            x = params.split("&")[0];
-            localStorage.accessToken = x.split("=")[1];
-            console.log(localStorage.accessToken);
-            chrome.tabs.onUpdated.removeListener(onFacebookLogin);
-            $("#loading").hide();
-            chrome.tabs.remove(tabs[i].id);
-            window.get_stream();
-            window.get_wall();
-            window.get_friends();
-            window.get_me();
-            return;
-          }
-          i++;
-        }
-      });
-    }
-  };
-
-  window.update_ui_login = function(login) {
-    if (login === true) {
-      return console.log("login ui modifications");
-    } else {
-      return console.log("logout ui modifications");
-    }
-  };
-
-  chrome.tabs.onUpdated.addListener(onFacebookLogin);
-
-  window.fb_match = {
-    profile: {
-      url: "/me",
-      method: "GET"
-    },
-    newsfeed: {
-      url: "/me/home",
-      method: "GET"
-    },
-    wall: {
-      url: "/me/feed",
-      method: "GET"
-    },
-    friends: {
-      url: "/me/friends"
-    },
-    me: {
-      url: "/me"
-    }
-  };
-
-  window.fb_base = "https://graph.facebook.com";
-
-  window.fb_call = function(obj, cb, tag) {
-    var params;
-    params = {};
-    params.access_token = localStorage.accessToken;
-    return $.getJSON("https://graph.facebook.com" + obj.url, params, function(res) {
-      console.log(res);
-      window.fb_data = res;
-      if (cb != null) {
-        if (tag != null) {
-          return cb(res, tag);
-        } else {
-          return cb(res);
-        }
-      }
-    });
-  };
-
-  window.like_obj = function(id) {
-    var params, url;
-    console.log("like obj");
-    params = {};
-    params.access_token = localStorage.accessToken;
-    url = fb_base + ("/" + id + "/likes");
-    return $.post(url, params, function(data) {
-      return console.log("like done", data);
-    });
-  };
-
-  window.comment_obj = function(id, message) {
-    var params, url;
-    console.log("comment obj");
-    params = {};
-    params.access_token = localStorage.accessToken;
-    params.message = message;
-    url = fb_base + ("/" + id + "/comments");
-    return $.post(url, params, function(data) {
-      return console.log("comment done", data);
-    });
-  };
-
-  window.post_wall = function(id, message) {
-    var params, url;
-    console.log("comment obj");
-    params = {};
-    params.access_token = localStorage.accessToken;
-    params.message = message;
-    url = fb_base + ("/" + id + "/feed");
-    return $.post(url, params, function(data) {
-      return console.log("feed done", data);
-    });
-  };
-
   Events = {
     bind: function(ev, callback) {
       var calls, evs, name, _i, _len;
@@ -1049,6 +934,121 @@
   if (typeof module !== "undefined" && module !== null) {
     module.exports = Spine.Model.Local;
   }
+
+  window.successURL = "https://www.facebook.com/connect/login_success.html";
+
+  window.onFacebookLogin = function() {
+    console.log("onFacebookLogin called");
+    if (!localStorage.accessToken) {
+      return chrome.tabs.getAllInWindow(null, function(tabs) {
+        var i, params, x;
+        i = 0;
+        while (i < tabs.length) {
+          if (tabs[i].url.indexOf(successURL) === 0) {
+            console.log("here", tabs[i]);
+            params = tabs[i].url.split("#")[1];
+            x = params.split("&")[0];
+            localStorage.accessToken = x.split("=")[1];
+            console.log(localStorage.accessToken);
+            chrome.tabs.onUpdated.removeListener(onFacebookLogin);
+            $("#loading").hide();
+            chrome.tabs.remove(tabs[i].id);
+            window.get_stream();
+            window.get_wall();
+            window.get_friends();
+            window.get_me();
+            return;
+          }
+          i++;
+        }
+      });
+    }
+  };
+
+  window.update_ui_login = function(login) {
+    if (login === true) {
+      return console.log("login ui modifications");
+    } else {
+      return console.log("logout ui modifications");
+    }
+  };
+
+  chrome.tabs.onUpdated.addListener(onFacebookLogin);
+
+  window.fb_match = {
+    profile: {
+      url: "/me",
+      method: "GET"
+    },
+    newsfeed: {
+      url: "/me/home",
+      method: "GET"
+    },
+    wall: {
+      url: "/me/feed",
+      method: "GET"
+    },
+    friends: {
+      url: "/me/friends"
+    },
+    me: {
+      url: "/me"
+    }
+  };
+
+  window.fb_base = "https://graph.facebook.com";
+
+  window.fb_call = function(obj, cb, tag) {
+    var params;
+    params = {};
+    params.access_token = localStorage.accessToken;
+    return $.getJSON("https://graph.facebook.com" + obj.url, params, function(res) {
+      console.log(res);
+      window.fb_data = res;
+      if (cb != null) {
+        if (tag != null) {
+          return cb(res, tag);
+        } else {
+          return cb(res);
+        }
+      }
+    });
+  };
+
+  window.like_obj = function(id) {
+    var params, url;
+    console.log("like obj");
+    params = {};
+    params.access_token = localStorage.accessToken;
+    url = fb_base + ("/" + id + "/likes");
+    return $.post(url, params, function(data) {
+      return console.log("like done", data);
+    });
+  };
+
+  window.comment_obj = function(id, message) {
+    var params, url;
+    console.log("comment obj");
+    params = {};
+    params.access_token = localStorage.accessToken;
+    params.message = message;
+    url = fb_base + ("/" + id + "/comments");
+    return $.post(url, params, function(data) {
+      return console.log("comment done", data);
+    });
+  };
+
+  window.post_wall = function(id, message) {
+    var params, url;
+    console.log("comment obj");
+    params = {};
+    params.access_token = localStorage.accessToken;
+    params.message = message;
+    url = fb_base + ("/" + id + "/feed");
+    return $.post(url, params, function(data) {
+      return console.log("feed done", data);
+    });
+  };
 
   Feed = (function(_super) {
 

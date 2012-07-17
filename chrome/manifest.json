@@ -1,7 +1,7 @@
 {
   "name": "Viola: Facebook tts",
   "version": "1.3",
-  "description": "This app allows people to have their newsfeed read out loud",
+  "description": "Have your facebook newsfeed read out loud",
   "app": {
     "launch": {
       "local_path": "main.html"

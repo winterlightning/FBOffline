@@ -1,3 +1,3 @@
-coffee -j all.js --compile app/fb_connect app/fb_api_calls spine/spine spine/local app/models app/data_process app/app app/delay_ops
+coffee -j all.js --compile spine/spine spine/local app/fb_connect app/fb_api_calls app/models app/data_process app/app app/delay_ops
 
 uglifyjs -o allcomp.js  all.js
