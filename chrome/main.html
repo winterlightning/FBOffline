@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Viola</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+	<script type="text/javascript">
+	if (document.images) {
+	    img1 = new Image();
+	    img1.src = "img/brown_denim.png";    
+	    img2 = new Image();
+	    img2.src = "img/woodboard_tile.png";   	    
+	}
+	</script>
+	
+	<script src="docs/assets/js/jquery.js"></script>
+	<script src="js/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.timeago.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/chosen.jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.scrollTo.js" type="text/javascript" charset="utf-8"></script>
+	
+    <!-- Le styles -->
+    <link href="docs/assets/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }w2s
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="docs/assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="docs/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="docs/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="docs/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="docs/assets/ico/apple-touch-icon-57-precomposed.png">
+    
+    <!-- non twitter css -->
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/chosen.css" rel="stylesheet">
+    <link href="css/auth-buttons.css" rel="stylesheet">
+	<!--[if IE 6]>
+	<link href="css/window.css" rel="stylesheet">
+	<![endif]-->
+    
+    <!-- Jquery bootstrap -->
+    <script src="js/jquery-ui-1.8.16.custom.min.js" type="text/javascript" charset="utf-8"></script>
+    <link type="text/css" href="css/custom-theme/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+    
+    <!-- fb shit -->
+    <script type="text/css" src="allcomp.js"></script>
+
+	<script id="feedTmpl" type="text/x-jquery-tmpl">
+		<div class="feed">
+			<div class="feed_content">
+				<header>
+					<div class="time">${ jQuery.timeago(updated_time) }</div>
+					<img src="http://graph.facebook.com/${ $data['from&id'] }/picture" alt="" class="avatar ${ $data['from&id'] }">
+					
+					<strong class="name">${ $data['from&name'] }  {{if $data['to&name'] }} > ${ $data['to&name'] } {{/if}}</strong>
+					<p>${message} ${story} ${name}</p>
+					
+					{{if picture}}
+					<div class="media">
+						{{if link}}<a href="${link}" target="_blank">{{/if}}<img src="${picture}" alt="mediaelement" class="media_photo" height="65" width="auto"></a>
+					</div>
+					{{/if}}
+				</header>						
+			</div>
+		</div>	    
+	</script>
+
+	<script id="listTmpl" type="text/x-jquery-tmpl">
+		<div class="column" name="${id}">
+			<header class="column-header js-action-header " data-action="resetToTopColumn"> 
+				<h1><strong>${name}</strong></h1> 
+				<span class="hornholder"><a class="bullhorn" href="#">D</a></span>
+				<span class="eyeholder"><a class="eye {{if watched}}on{{/if}}" href="#">L</a></span>
+				{{if editable}}<span class="settingholder"><a class="settings">Q</a></span>{{/if}}
+			</header>
+			
+			<div class="holder">
+			</div>			
+		</div>   
+	</script>	
+    
+  </head>
+
+  <body style="background-color: #444">
+
+	<div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000;">
+
+		<!-- <img style="margin: auto; display: block; vertical-align: middle; margin-top: 50px;" src="img/fbtalk.png" />	-->
+		<div id="top_loading" style="background-image: url('img/woodboard_tile.png')">
+			<h1 class="logo">VIOLA</h1>
+		</div>
+		
+		<p id="loading_text">Viola is a voice client for facebook that reads your newsfeed out loud! Make Facebook less distracting but still keep up to date by making your newstream background audio.</p>
+		
+		<a target="_blank" class="btn-auth btn-facebook large" href="https://www.facebook.com/dialog/oauth?client_id=318226391597707&response_type=token&scope=email&redirect_uri=https://www.facebook.com/connect/login_success.html&scope=read_stream,publish_stream,offline_access,read_mailbox" style="margin: auto; display: block; top: 50px; width: 300px;">
+		    Sign in with <b>Facebook</b>
+		</a>
+		
+		<div id="bottom_loading"></div>
+		
+	</div>
+
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">VIOLA</a>
+          
+          <ul class="nav pull-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="font-family: 'glyphish'; font-size: 30px; vertical-align: middle">{</span>User <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+	              <li><a onclick="settings_window()">Settings</a></li>
+	              <li class="divider"></li>
+	              <li><a href="#" onclick="window.logout()">Sign Out</a></li>
+              </ul>
+            </li>
+          </ul>
+          
+          <div class="nav-collapse">
+            <ul class="nav" style="top: 2px;">
+              <li><a href="#" onclick="fb_selector()">Add Column</a></li>
+              <li><a href="#" id="stoptalking" onclick="window.stop_talking()">Stop Audio</a></li>
+              <li><a href="#" id="stoptalking" onclick="window.refresh_feed()">Refresh Feed</a></li>
+              <li><a href="#" id="stoptalking" onclick="window.update_status_window()">Post Status</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+	
+	<div id="pane-target" class="pane">
+		<div id="columns">		
+		</div>
+		
+	</div>
+	
+	<div class="halfCircleRight" id="leftmove" onclick="$('#pane-target').scrollTo( '-=348px', 800 )">
+		<svg fill="white" version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 100 83.584" enable-background="new 0 0 100 83.584" space="preserve">
+		<polygon points="41.791,83.527 0,41.736 41.791,0 69.337,0 37.562,31.777 100,31.777 100,51.977 37.785,51.977 69.394,83.584 
+			41.791,83.527 "></polygon>
+		</svg>		
+	</div>
+	<div class="halfCircleLeft" id="rightmove" onclick="$('#pane-target').scrollTo( '+=348px', 800 )">
+		<svg fill="white" version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 100 83.641" enable-background="new 0 0 100 83.641" space="preserve">
+		<polygon points="58.263,0.056 100,41.85 58.263,83.641 30.662,83.641 62.438,51.866 0,51.866 0,31.611 62.213,31.611 30.605,0 
+			58.263,0.056 "></polygon>
+		</svg>		
+	</div>
+
+    <!-- ui-dialog -->
+    <div id="dialog" title="Dialog Title" style="display: none; overflow: hidden;">
+	    <p>Choose a name for the column</p>
+        <input type="text" class="span2" id="column_name" />
+	    <p>Type in your friend's name in the input, a new column will be created from their newsfeed.</p>
+        <select data-placeholder="Pick your friend" style="width:350px;" multiple class="chzn-select  chzn-ltr" tabindex="10" id="friendpicker">
+          <option value=""></option>
+        </select>
+    </div>
+
+    <div id="dialog_status" title="Dialog Title" style="display: none; overflow: hidden;">
+		<textarea id="dialog_status_textarea" class="input-xlarge" id="textarea" rows="3" style="width: 364px; height: 69px;"></textarea>
+    </div>
+
+    <div id="dialog_settings" title="Dialog Title" style="display: none; overflow: hidden;">
+		<form class="form-horizontal">
+		  <fieldset>
+		    <div class="control-group">
+		      <label class="control-label" for="one">Auto-Sync</label>
+		      <div class="controls">
+				<input type="checkbox" checked class="switch" id="one" style="position: relative; top: -3px;" />
+		      </div>
+		    </div>
+		  </fieldset>
+		  <fieldset>
+		    <div class="control-group">
+		      <label class="control-label" for="one">Speaking Speed</label>
+		      <div class="controls">
+				<div id="slider" style="position: relative; top: 7px;"></div>
+		      </div>
+		    </div>
+		  </fieldset>		  
+		</form>		
+    </div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="docs/assets/js/bootstrap-transition.js"></script>
+    <script src="docs/assets/js/bootstrap-alert.js"></script>
+    <script src="docs/assets/js/bootstrap-modal.js"></script>
+    <script src="docs/assets/js/bootstrap-dropdown.js"></script>
+    <script src="docs/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="docs/assets/js/bootstrap-tab.js"></script>
+    <script src="docs/assets/js/bootstrap-tooltip.js"></script>
+    <script src="docs/assets/js/bootstrap-popover.js"></script>
+    <script src="docs/assets/js/bootstrap-button.js"></script>
+    <script src="docs/assets/js/bootstrap-collapse.js"></script>
+    <script src="docs/assets/js/bootstrap-carousel.js"></script>
+    <script src="docs/assets/js/bootstrap-typeahead.js"></script>
+
+  </body>
+</html>
