@@ -296,6 +296,30 @@ div.pane {
 
 /* dialog pane */
 
+.actions {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	margin-bottom: 0px;
+	margin-right: 7px;
+	display: none;
+}
+
+.feed:hover .actions { display: block; }
+
+.actions a {
+	font-family: "glyphish";
+	font-size: 25px;
+	color: #ccc;
+}
+
+.actions a:hover { 
+	text-decoration: none; 
+	color: #fff; 
+	text-shadow: rgba(0, 0, 0, .5) 0 1px 1px, #fff 0 0 10px;
+}
+
+.actions a:active { color: #0AF; }
 
 /* addition to bootstrap */
 /* Generated from LESS using BS mixins */
