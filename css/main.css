@@ -319,6 +319,8 @@ div.pane {
 	text-shadow: rgba(0, 0, 0, .5) 0 1px 1px, #fff 0 0 10px;
 }
 
+.actions a:active { color: #0AF; }
+
 /* addition to bootstrap */
 /* Generated from LESS using BS mixins */
 input[type="checkbox"].switch {
